@@ -14,9 +14,12 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8)
   }).then(user => {
     if (user) {
-      res.send({ message: "User was registered successfully!" });
+      var token = jwt.sign({ user: user }, config.secret, {
+        expiresIn: 86400
+      });
+      return res.json({ msg: 'User was registered successfully!', accessToken: token });
     }
-  }).catch(err => res.status(500).send({ message: err.message }));
+  }).catch(err => res.status(500).send(err.message));
 };
 
 exports.signin = (req, res) => {
@@ -35,7 +38,8 @@ exports.signin = (req, res) => {
       expiresIn: 86400 // 24 hours
     });
     res.status(200).send({
-      user,
+      data: { ...user, token },
+      message: "User was logged in successfully!",
       accessToken: token
     });
   }).catch(err => res.status(500).send({ message: err.message }));

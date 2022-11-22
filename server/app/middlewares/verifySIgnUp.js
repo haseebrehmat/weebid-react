@@ -4,15 +4,10 @@ const User = db.user;
 checkDuplicateEmail = (req, res, next) => {
   User.findOne({ where: { email: req.body.email } }).then(user => {
     if (user) {
-      return res.status(400).send({ message: "Failed! Email is already in use!" });
+      return res.status(400).send('Email is already in use!');
     }
     next();
   });
-  if (!req.terms) {
-    return res.status(400).send({ message: "Please accept the terms and conditions" })
-  } else {
-    next()
-  }
 };
 
 

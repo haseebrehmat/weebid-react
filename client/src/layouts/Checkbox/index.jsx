@@ -1,7 +1,7 @@
 import { FormControlLabel, Checkbox } from '@mui/material'
 
 export default ({
-  label = 'Approve', required = true, checked = false, onChange = null, name,
+  label = 'Approve', required = false, checked = false, onChange = null, name,
 }) => (
   <FormControlLabel
     control={

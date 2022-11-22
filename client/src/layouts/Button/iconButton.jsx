@@ -7,7 +7,6 @@ export default ({
     size={size}
     edge='start'
     color={color}
-    sx={{ mr: 2 }}
     type={type}
     onClick={onClick}
   >

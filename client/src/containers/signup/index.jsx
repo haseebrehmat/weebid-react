@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Stack } from '@mui/material'
+// import { useNavigate } from 'react-router-dom'
 
 import { EmailAndPass } from 'components'
 import {
-  AlertModal, Button, Checkbox, Input,
+  AlertModal, Button, Checkbox, Input, SuccessModal,
 } from 'layouts'
 
 import { signup } from 'api/auth'
@@ -13,11 +14,18 @@ import styling from './styling'
 const Signup = ({ user, setUser }) => {
   const { name, email, password } = user
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  // const redirect = useNavigate()
 
   const handleSubmit = async e => {
     e.preventDefault()
     const { status, msg } = await signup(name, email, password)
-    if (status === 'error') setError(msg)
+    if (status === 'error') {
+      setError(msg)
+    } else {
+      setSuccess(msg)
+      // redirect('/')
+    }
   }
 
   const handleChange = e => setUser({ ...user, [e.target.name]: e.target.value })
@@ -26,9 +34,10 @@ const Signup = ({ user, setUser }) => {
     <Stack spacing={2} sx={styling} component='form' autoComplete='off' onSubmit={handleSubmit}>
       <Input label='Full Name' value={name} onChange={handleChange} name='name' />
       <EmailAndPass email={email} pass={password} onChange={handleChange} />
-      <Checkbox label='Please accept all the terms and conditions!' name='terms' onChange={handleChange} />
+      <Checkbox label='Please accept all the terms and conditions!' name='terms' required />
       <Button text='Sign Up' type='Submit' />
-      {error.length > 0 && <AlertModal info={error} setError={setError} />}
+      {error?.length > 0 && <AlertModal info={error} clearError={setError} />}
+      {success?.length > 0 && <SuccessModal info={success} clearSuccess={setSuccess} />}
     </Stack>
   )
 }
