@@ -1,8 +1,11 @@
+import { useState, forwardRef } from 'react'
 import {
-  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Stack,
+  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Stack, Slide,
 } from '@mui/material'
-import { useState } from 'react'
-import { Button } from 'components'
+
+import { Button } from 'layouts'
+
+const Transition = forwardRef((props, ref) => <Slide direction='down' ref={ref} {...props} />)
 
 const Alert = ({
   title = 'Alert', info = 'Something gone wrong', setError = null,
@@ -17,6 +20,8 @@ const Alert = ({
     <Dialog
       open={open}
       onClose={handleClose}
+      TransitionComponent={Transition}
+      keepMounted
       aria-describedby='alert-dialog-slide-description'
       fullWidth
       maxWidth='xs'

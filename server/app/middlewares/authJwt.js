@@ -16,54 +16,26 @@ verifyToken = (req, res, next) => {
 
 isAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
-          next();
-          return;
-        }
-      }
-      return res.status(403).send({ message: "Require Admin Role!" });
-    });
+    if (user.role === 'admin') {
+      return next();
+    }
+    return res.status(403).send({ message: "Require Admin Role!" });
   });
 };
 
-isModerator = (req, res, next) => {
+isInfluencer = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
-          next();
-          return;
-        }
-      }
-      return res.status(403).send({ message: "Require Moderator Role!" });
-    });
-  });
-};
-
-isModeratorOrAdmin = (req, res, next) => {
-  User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
-          next();
-          return;
-        }
-        if (roles[i].name === "admin") {
-          next();
-          return;
-        }
-      }
-      return res.status(403).send({ message: "Require Moderator or Admin Role!" });
-    });
+    if (user.role === 'influencer') {
+      return next();
+    }
+    return res.status(403).send({ message: "Require Influencer Role!" });
   });
 };
 
 const authJwt = {
   verifyToken,
   isAdmin,
-  isModerator,
-  isModeratorOrAdmin
-};
+  isInfluencer
+}
+
 module.exports = authJwt;

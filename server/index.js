@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require("cors")
+require("dotenv").config()
+
 const db = require("./app/models")
-const Role = db.role
+const dbSeeder = require('./app/seeders')
 
 const app = express()
 
@@ -17,28 +19,12 @@ app.use(express.urlencoded({ extended: true }))
 db.sequelize.sync({ force: true })
   .then(() => {
     console.log("Synced db.");
-    initial();
+    dbSeeder();
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });
 
-const initial = () => {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
-
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
-
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
-}
 
 require('./app/routes/auth.routes')(app);
 require("./app/routes/user.routes")(app);

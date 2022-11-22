@@ -1,7 +1,13 @@
-import { Stack } from '@mui/material'
-import { AlertModal, Button, Input } from 'components'
-import axios from 'axios'
 import { useState } from 'react'
+import { Stack } from '@mui/material'
+
+import { EmailAndPass } from 'components'
+import {
+  AlertModal, Button, Checkbox, Input,
+} from 'layouts'
+
+import { signup } from 'api/auth'
+
 import styling from './styling'
 
 const Signup = ({ user, setUser }) => {
@@ -10,17 +16,8 @@ const Signup = ({ user, setUser }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const options = {
-      url: 'http://localhost:3001/api/auth/signup',
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      data: user,
-    }
-    await axios(options)
-      .then(({ data }) => console.log(data))
-      .catch(({ response }) => setError(response.data.message))
+    const { status, msg } = await signup(name, email, password)
+    if (status === 'error') setError(msg)
   }
 
   const handleChange = e => setUser({ ...user, [e.target.name]: e.target.value })
@@ -28,8 +25,8 @@ const Signup = ({ user, setUser }) => {
   return (
     <Stack spacing={2} sx={styling} component='form' autoComplete='off' onSubmit={handleSubmit}>
       <Input label='Full Name' value={name} onChange={handleChange} name='name' />
-      <Input label='Email' value={email} name='email' onChange={handleChange} />
-      <Input label='Passowrd' value={password} type='password' name='password' onChange={handleChange} />
+      <EmailAndPass email={email} pass={password} onChange={handleChange} />
+      <Checkbox label='Please accept all the terms and conditions!' name='terms' onChange={handleChange} />
       <Button text='Sign Up' type='Submit' />
       {error.length > 0 && <AlertModal info={error} setError={setError} />}
     </Stack>
