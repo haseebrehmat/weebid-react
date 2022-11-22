@@ -5,15 +5,15 @@ import {
 
 import { Button } from 'layouts'
 
-const Transition = forwardRef((props, ref) => <Slide direction='down' ref={ref} {...props} />)
+const Transition = forwardRef((props, ref) => <Slide direction='left' ref={ref} {...props} />)
 
 const Alert = ({
-  title = 'Alert', info = 'Something gone wrong', clearError = null,
+  title = 'Success', info = 'Congratulations', clearSuccess = null,
 }) => {
   const [open, setOpen] = useState(true)
   const handleClose = () => {
     setOpen(false)
-    clearError({})
+    clearSuccess({})
   }
 
   return (
@@ -35,7 +35,7 @@ const Alert = ({
         </DialogContent>
       </Stack>
       <DialogActions>
-        <Button text='Close' onClick={handleClose} />
+        <Button text='Cancel' onClick={handleClose} />
       </DialogActions>
     </Dialog>
   )

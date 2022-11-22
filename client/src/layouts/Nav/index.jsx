@@ -16,25 +16,24 @@ const Nav = () => {
 
   const handleMenu = event => setAnchorEl(event.currentTarget)
 
-  const handleClose = () => setAnchorEl(!anchorEl ? false : null)
+  const handleClose = () => setAnchorEl(anchorEl ? false : null)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Switch
-        label={auth ? 'Logout' : 'Login'}
-        checked={auth}
-        onChange={handleChange}
-      />
       <AppBar position='static'>
         <Toolbar>
           <IconBtn
             edge='start'
             aria-label='menu'
-            sx={{ mr: 2 }}
             icon={<MenuIcon />}
           />
+          <Switch
+            label={auth ? 'Logout' : 'Login'}
+            checked={auth}
+            onChange={handleChange}
+          />
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Photos
+            WeeBID React
           </Typography>
           {auth && (
             <div>

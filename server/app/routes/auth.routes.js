@@ -1,7 +1,7 @@
 const { verifySignUp } = require("../middlewares")
 const authController = require("../controllers/auth.controller");
 
-module.exports = (app) => {
+module.exports = app => {
   app.use(function (req, res, next) {
     res.header(
       'Access-Control-Allow-Headers',

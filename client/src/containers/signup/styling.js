@@ -7,4 +7,5 @@ export default {
   },
   marginInline: 'auto',
   marginTop: '100px',
+  minWidth: 'fit-content',
 }
