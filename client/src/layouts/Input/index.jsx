@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material'
 
 const Input = ({
-  label = 'Label', value = null, onChange = null, name, type = 'text', required = true, msg = '',
+  label = 'Enter', value = null, onChange = null, name, type = 'text', required = true,
 }) => (
   <TextField
     label={label}
@@ -12,8 +12,6 @@ const Input = ({
     name={name}
     type={type}
     required={required}
-    error={msg.length > 0}
-    helperText={msg}
   />
 )
 

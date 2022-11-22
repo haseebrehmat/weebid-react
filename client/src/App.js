@@ -1,6 +1,10 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import Auth from 'containers/auth'
+import { Suspense } from 'react'
+
+import { Router } from 'components'
+import { BrowserRouter } from 'react-router-dom'
+import { Nav, Loader } from 'layouts'
 
 const darkTheme = createTheme({
   palette: {
@@ -13,10 +17,15 @@ const darkTheme = createTheme({
 })
 
 const App = () => (
-  <ThemeProvider theme={darkTheme}>
-    <CssBaseline />
-    <Auth />
-  </ThemeProvider>
+  <Suspense fallback={<Loader />}>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Nav />
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
+  </Suspense>
 )
 
 export default App

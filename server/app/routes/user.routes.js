@@ -16,12 +16,12 @@ module.exports = app => {
     "/api/test/user",
     [authJwt.verifyToken],
     userController.userBoard
-  );
-
+  ); 
+  
   app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    userController.moderatorBoard
+    "/api/test/influencer",
+    [authJwt.isInfluencer],
+    userController.userBoard
   );
 
   app.get(
