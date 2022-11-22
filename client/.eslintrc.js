@@ -37,5 +37,8 @@ module.exports = {
     'no-param-reassign': 'off',
     'react/jsx-wrap-multilines': 'off',
     'react/jsx-closing-tag-location': 'off',
+    'no-console': 'off', // consoles
+    'max-len': 'off', // max-length
+    'no-return-assign': 'off', // var = value
   },
 }
