@@ -20,7 +20,7 @@ module.exports = app => {
   
   app.get(
     "/api/test/influencer",
-    [authJwt.isInfluencer],
+    [authJwt.verifyToken, authJwt.isInfluencer],
     userController.userBoard
   );
 

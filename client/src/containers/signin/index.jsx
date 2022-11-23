@@ -34,7 +34,7 @@ const Signin = ({ user, setUser }) => {
         <EmailAndPass email={email} pass={password} onChange={handleChange} />
         <Typography sx={forgotSx}>Forgot Password?</Typography>
         <AuthActions login />
-        {error.length > 0 && <AlertModal info={error} setError={setError} />}
+        {error.length > 0 && <AlertModal info={error} clearError={setError} />}
       </Stack>
     </>
   )

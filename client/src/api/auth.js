@@ -6,11 +6,11 @@ export const signup = (email, password) => http.post('auth/signup', { email, pas
     saveToken(res.data.accessToken)
     return { status: 'success', msg: res.data.message }
   })
-  .catch(error => ({ status: 'error', msg: error.response.data }))
+  .catch(error => ({ status: 'error', msg: error.response.data.msg }))
 
 export const signin = (email, password) => http.post('auth/signin', { email, password })
   .then(res => {
     saveToken(res.data.accessToken)
     return { status: 'success', msg: res.data.message }
   })
-  .catch(error => ({ status: 'error', msg: error.response.data }))
+  .catch(error => ({ status: 'error', msg: error.response.data.msg }))

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button, Divider, Typography } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google'
-import FacebookIcon from '@mui/icons-material/Facebook'
+import FacebookIcon from '@mui/icons-material/FacebookOutlined'
 
 import {
   socialBtnsSx, googleBtnSx, fbBtnSx, orSx, createAccountSx, dividerSx, notUserSx,
