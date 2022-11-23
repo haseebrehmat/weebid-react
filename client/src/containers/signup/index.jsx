@@ -34,7 +34,7 @@ const Signup = ({ user, setUser }) => {
     <>
       <AuthLogo />
       <Stack {...formProps} onSubmit={handleSubmit}>
-        <Typography variant='h4' color='white' marginX='auto'>Create account</Typography>
+        <Typography variant='h4' color='white' marginX='auto'>Get started today!</Typography>
         <EmailAndPass email={email} pass={password} onChange={handleChange} />
         <Checkbox {...checkboxProps} />
         <AuthActions />
