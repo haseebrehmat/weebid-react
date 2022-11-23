@@ -13,8 +13,9 @@ export const formSx = {
   borderRadius: '30px',
 }
 
-export const forgotSx = {
-  color: 'white',
-  fontSize: '15px',
-  textAlign: 'right',
+export const checkboxSx = {
+  marginRight: -1,
+  '&': {
+    color: '#f8b500 !important',
+  },
 }

@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Stack, Typography, Box } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 
-import { EmailAndPass, AuthActions } from 'components'
+import { EmailAndPass, AuthActions, AuthLogo } from 'components'
 import { AlertModal } from 'layouts'
 
 import { signin } from 'api/auth'
 
-import logo from 'assets/logo.png'
-import { formSx, forgotSx, logoSx } from './style'
+import { formSx, forgotSx } from './style'
 
-const Signup = ({ user, setUser }) => {
+const Signin = ({ user, setUser }) => {
   const redirect = useNavigate()
   const [error, setError] = useState('')
   const { email, password } = user
@@ -29,9 +28,7 @@ const Signup = ({ user, setUser }) => {
 
   return (
     <>
-      <Box display='flex' alignItems='center' justifyContent='center' mt='90px'>
-        <Box component='img' sx={logoSx} alt='Logo' src={logo} />
-      </Box>
+      <AuthLogo />
       <Stack spacing={2} sx={formSx} component='form' autoComplete='off' onSubmit={handleSubmit}>
         <Typography variant='h4' color='white' marginX='auto'>Log in to your account</Typography>
         <EmailAndPass email={email} pass={password} onChange={handleChange} />
@@ -43,4 +40,4 @@ const Signup = ({ user, setUser }) => {
   )
 }
 
-export default Signup
+export default Signin
