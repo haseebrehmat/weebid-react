@@ -18,3 +18,8 @@ export const forgotSx = {
   fontSize: '15px',
   textAlign: 'right',
 }
+
+export const logoSx = {
+  height: 50,
+  width: 145,
+}

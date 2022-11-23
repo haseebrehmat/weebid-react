@@ -8,12 +8,12 @@ import { AlertModal } from 'layouts'
 import { signin } from 'api/auth'
 
 import logo from 'assets/logo.png'
-import { formSx, forgotSx } from './style'
+import { formSx, forgotSx, logoSx } from './style'
 
 const Signup = ({ user, setUser }) => {
-  const { email, password } = user
-  const [error, setError] = useState('')
   const redirect = useNavigate()
+  const [error, setError] = useState('')
+  const { email, password } = user
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -29,8 +29,8 @@ const Signup = ({ user, setUser }) => {
 
   return (
     <>
-      <Box display='flex' alignItems='center' justifyContent='center' mt='80px'>
-        <Box component='img' sx={{ height: 45, width: 145 }} alt='Logo' src={logo} />
+      <Box display='flex' alignItems='center' justifyContent='center' mt='90px'>
+        <Box component='img' sx={logoSx} alt='Logo' src={logo} />
       </Box>
       <Stack spacing={2} sx={formSx} component='form' autoComplete='off' onSubmit={handleSubmit}>
         <Typography variant='h4' color='white' marginX='auto'>Log in to your account</Typography>
