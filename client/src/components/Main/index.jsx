@@ -4,9 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Home, Signin, Signup } from 'containers'
 
 const Router = () => {
-  const [user, setUser] = useState({
-    name: '', email: '', password: '', terms: false,
-  })
+  const [user, setUser] = useState({ email: '', password: '' })
 
   return (
     <Routes>
