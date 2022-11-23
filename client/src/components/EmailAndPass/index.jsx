@@ -1,9 +1,22 @@
-import { WhiteInput } from 'layouts'
+import { Input } from 'layouts'
 
 const EmailAndPass = ({ email, pass, onChange = null }) => (
   <>
-    <WhiteInput label='Email' value={email} name='email' onChange={onChange} />
-    <WhiteInput label='Password' value={pass} type='password' name='password' onChange={onChange} />
+    <Input
+      value={email}
+      onChange={onChange}
+      type='email'
+      name='email'
+      label='Email'
+    />
+    <Input
+      value={pass}
+      onChange={onChange}
+      type='password'
+      name='password'
+      label='Password'
+      sx={{ mt: '1.5rem !important' }}
+    />
   </>
 )
 
