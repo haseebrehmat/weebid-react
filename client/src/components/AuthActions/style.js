@@ -32,6 +32,7 @@ export const orSx = {
 export const createAccountSx = {
   textDecoration: 'underline',
   mx: '5px',
+  color: 'white',
 }
 
 export const notUserSx = {

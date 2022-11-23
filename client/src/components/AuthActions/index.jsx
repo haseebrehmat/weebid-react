@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Button, Divider, Typography } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google'
 import FacebookIcon from '@mui/icons-material/Facebook'
@@ -19,9 +20,15 @@ const AuthActions = ({ login }) => (
       Continue with Facebook
     </Button>
     <Divider sx={dividerSx} />
-    <Typography sx={notUserSx}>Not yet a user?
-      <Typography component='span' sx={createAccountSx}>Create an account</Typography>
-    </Typography>
+    {login ? (
+      <Typography sx={notUserSx}>Not yet a user?
+        <Typography component={Link} to='/create-account' sx={createAccountSx}>Create an account</Typography>
+      </Typography>
+    ) : (
+      <Typography sx={notUserSx}>Have an account?
+        <Typography component={Link} to='/login' sx={createAccountSx}>Login</Typography>
+      </Typography>
+    )}
   </>
 )
 

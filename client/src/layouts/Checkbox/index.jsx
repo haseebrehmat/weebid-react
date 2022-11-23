@@ -1,22 +1,23 @@
-import { FormControlLabel, Checkbox, FormGroup } from '@mui/material'
+import {
+  FormControlLabel, Checkbox, FormGroup, Typography,
+} from '@mui/material'
 
 export default ({
   label = 'Approve', required = false, checked = false, onChange = null, name, sx,
 }) => (
   <FormGroup>
     <FormControlLabel
+      sx={{ color: 'white' }}
       control={
         <Checkbox
           defaultChecked={checked}
           onChange={onChange}
           required={required}
           name={name}
-          color='warning'
-          sx={sx}
-          // sx={{ marginLeft: -1 }}
+          sx={{ ...sx }}
         />
       }
-      label={label}
+      label={<Typography mx='10px'>{label}</Typography>}
     />
   </FormGroup>
 )
