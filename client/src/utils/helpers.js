@@ -1,4 +1,4 @@
-import { TOKEN } from './constants'
+import { TOKEN } from 'constants'
 
 export const saveToken = token => localStorage.setItem(TOKEN, JSON.stringify(token))
 
