@@ -5,11 +5,11 @@ const User = db.user;
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
-  if (!token) return res.status(403).send({ message: "No token provided!" })
+  if (!token) return res.status(403).send({ msg: "No token provided!" })
 
   jwt.verify(token, config.secret, (err, decoded) => {
-    if (err) return res.status(401).send({ message: "Unauthorized!" })
-    req.userId = decoded.id;
+    if (err) return res.status(401).send({ msg: "Unauthorized!" })
+    req.user = decoded.user;
     next();
   });
 };
@@ -19,7 +19,7 @@ isAdmin = (req, res, next) => {
     if (user.role === 'admin') {
       return next();
     }
-    return res.status(403).send({ message: "Require Admin Role!" });
+    return res.status(403).send({ msg: "Require Admin Role!" });
   });
 };
 
@@ -28,7 +28,7 @@ isInfluencer = (req, res, next) => {
     if (user.role === 'influencer') {
       return next();
     }
-    return res.status(403).send({ message: "Require Influencer Role!" });
+    return res.status(403).send({ msg: "Require Influencer Role!" });
   });
 };
 

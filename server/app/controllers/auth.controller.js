@@ -18,7 +18,7 @@ exports.signup = (req, res) => {
       });
       return res.json({ msg: 'User was registered successfully!', accessToken: token });
     }
-  }).catch(err => res.status(500).send(err.message));
+  }).catch(err => res.status(500).send({ msg: err.message }));
 };
 
 exports.signin = (req, res) => {
@@ -27,16 +27,16 @@ exports.signin = (req, res) => {
       email: req.body.email
     }
   }).then(user => {
-    if (!user) return res.status(404).send("User Not found.");
+    if (!user) return res.status(404).send({ msg: 'User Not found.' });
     var passwordIsValid = bcrypt.compareSync(
       req.body.password,
       user.password
     );
-    if (!passwordIsValid) return res.status(401).send("Invalid Password!");
+    if (!passwordIsValid) return res.status(401).send({ msg: 'Invalid Password!' });
     var token = jwt.sign({ user: user }, config.secret, {
       expiresIn: 86400 // 24 hours
     });
     return res.json({ msg: "User was logged in successfully!", accessToken: token });
     // return res.status(200).send({ msg: "User was logged in successfully!", accessToken: token });
-  }).catch(err => res.status(500).send(err.message));
+  }).catch(err => res.status(500).send({ msg: err.message }));
 };
