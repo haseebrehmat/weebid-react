@@ -1,9 +1,7 @@
 import { useState, forwardRef } from 'react'
 import {
-  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Stack, Slide,
+  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Stack, Slide, Button,
 } from '@mui/material'
-
-import { Button } from 'layouts'
 
 const Transition = forwardRef((props, ref) => <Slide direction='down' ref={ref} {...props} />)
 
@@ -35,7 +33,9 @@ const Alert = ({
         </DialogContent>
       </Stack>
       <DialogActions>
-        <Button text='Close' onClick={handleClose} />
+        <Button variant='contained' color='warning' onClick={handleClose}>
+          Close
+        </Button>
       </DialogActions>
     </Dialog>
   )
