@@ -33,6 +33,9 @@ export const createAccountSx = {
   textDecoration: 'underline',
   mx: '5px',
   color: 'white',
+  '&:hover': {
+    textDecoration: 'none',
+  },
 }
 
 export const notUserSx = {

@@ -5,11 +5,11 @@ import FacebookIcon from '@mui/icons-material/FacebookOutlined'
 
 import {
   socialBtnsSx, googleBtnSx, fbBtnSx, orSx, createAccountSx, dividerSx, notUserSx,
-} from './style'
+} from './props'
 
 const AuthActions = ({ login }) => (
   <>
-    <Button variant='contained' id='theme-btn' type='submit' sx={socialBtnsSx}>
+    <Button variant='contained' id='theme-btn' type='submit' sx={{ ...socialBtnsSx, mt: !login && '1px !important' }}>
       {login ? 'Sign In' : 'Sign Up'}
     </Button>
     <Typography sx={orSx}>-Or-</Typography>

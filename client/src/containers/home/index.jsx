@@ -1,17 +1,17 @@
-// import { Avatar } from '@mui/material'
-import { getToken } from 'utils/helpers'
+import { Avatar, Typography } from '@mui/material'
+import { decodeJwt } from 'utils/helpers'
 
 const Home = () => {
-  const token = getToken()
-  console.log(token)
+  const { user } = decodeJwt()
 
   return (
-    <div>
-      {/* <Avatar alt='A' src={location.state.avatar} sx={{ bgcolor: 'white' }} /><br />
-      Name: {location.state.dataValues.name}<br />
-      Role: {location.state.dataValues.role}<br /> */}
-      JWT: {token}<br />
-    </div>
+    <>
+      <Avatar alt='A' src={user.avatar} sx={{ bgcolor: 'white' }} /><br />
+      <Typography sx={{ color: 'white' }}>
+        Name: {user.name}<br />
+        Role: {user.role}<br />
+      </Typography>
+    </>
   )
 }
 
