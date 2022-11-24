@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { decodeJwt } from 'utils/helpers'
 
-const Protected = ({ children }) => {
+const Authenticated = ({ children }) => {
   const navigate = useNavigate()
   const decoded = decodeJwt()
   useEffect(() => {
@@ -14,4 +14,4 @@ const Protected = ({ children }) => {
   return children
 }
 
-export default Protected
+export default Authenticated

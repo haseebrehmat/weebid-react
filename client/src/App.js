@@ -2,14 +2,15 @@ import { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-import { Router } from 'components'
-import { Nav, Loader } from 'layouts'
+import { Main } from 'components'
+import { Loader, Nav } from 'layouts'
 
 const theme = createTheme({
   typography: {
     allVariants: {
       fontFamily: 'Biko',
       fontWeight: 400,
+      // color: 'white',
     },
     button: {
       textTransform: 'none',
@@ -23,7 +24,7 @@ const App = () => (
     <Suspense fallback={<Loader />}>
       <BrowserRouter>
         <Nav />
-        <Router />
+        <Main />
       </BrowserRouter>
     </Suspense>
   </ThemeProvider>

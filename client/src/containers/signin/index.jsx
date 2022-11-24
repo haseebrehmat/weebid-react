@@ -7,7 +7,7 @@ import { AlertModal } from 'layouts'
 
 import { signin } from 'api/auth'
 
-import { formSx, forgotSx } from './style'
+import { formSx, forgotSx } from './props'
 
 const Signin = ({ user, setUser }) => {
   const redirect = useNavigate()

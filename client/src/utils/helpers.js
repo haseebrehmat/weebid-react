@@ -8,4 +8,4 @@ export const getToken = () => JSON.parse(localStorage.getItem(TOKEN))
 
 export const removeToken = () => localStorage.removeItem(TOKEN)
 
-export const decodeJwt = () => jwt_decode(getToken())
+export const decodeJwt = () => (getToken() ? jwt_decode(getToken()) : { user: null })
