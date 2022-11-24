@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  AppBar, Box, Toolbar, Menu, MenuItem, Button, Avatar, Divider, Typography,
+  AppBar, Box, Toolbar, Menu, MenuItem, Button, Avatar, Divider, Typography, Stack,
 } from '@mui/material'
 
-import { Logout } from 'components'
 import { Logo } from 'layouts'
 
 import searchIcon from 'assets/search.png'
+import NavItems from './items'
 import {
   appbarProps, avatarmenuProps, avatarProps,
   menuProps, rightmenuProps, searchProps, toolbarProps,
@@ -33,8 +33,9 @@ const Nav = () => {
               <Avatar {...avatarProps(searchIcon, 'A')} />
             </Button>
             <Menu onClose={handleClose} {...menuProps(anchorEl)}>
-              <MenuItem onClick={handleClose} component={Link} to='/'>Home</MenuItem>
-              <Logout closeMenu={handleClose} />
+              <Stack padding='10px' spacing={2}>
+                <NavItems closeMenu={handleClose} />
+              </Stack>
             </Menu>
           </Box>
         </Toolbar>

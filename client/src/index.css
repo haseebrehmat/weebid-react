@@ -13,13 +13,15 @@ body {
 }
 
 
-/* Manual CSS */
-/* input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 100px #2e2e2e inset !important;
-  -webkit-text-fill-color: #fff !important;
-  caret-color: #fff !important;
-  border-radius: inherit !important;
-} */
+
+/* ----------------------------MUI Classes----------------------------- */
+/* Dropdown Menu */
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  background-color: #212529 !important;
+  color: white !important;
+  border-radius: 15px !important;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  padding-top: 0px !important;
+}
