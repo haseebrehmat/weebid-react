@@ -24,6 +24,7 @@ export const menuProps = anchorEl => ({
   open: Boolean(anchorEl),
   sx: {
     mt: '10px',
+    backdropFilter: 'brightness(0.6)',
   },
 })
 
