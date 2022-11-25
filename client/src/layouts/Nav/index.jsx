@@ -5,16 +5,16 @@ import {
 } from '@mui/material'
 
 import { Logo } from 'layouts'
+import NavItems from './items'
 
 import { decodeJwt } from 'utils/helpers'
-
-import searchIcon from 'assets/search.png'
-import logo from 'assets/slider1.png'
-import NavItems from './items'
 import {
   appbarProps, avatarmenuProps, avatarProps, exploreProps,
   menuProps, rightmenuProps, searchProps, toolbarProps,
 } from './props'
+
+import logo from 'assets/slider1.png'
+import searchIcon from 'assets/search.png'
 
 const Nav = () => {
   const [anchorEl, setAnchorEl] = useState(null)
