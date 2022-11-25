@@ -61,6 +61,5 @@ export const avatarProps = (src, alt) => ({
     width: 24,
     height: 24,
     ml: 1,
-    bgcolor: '#131313',
   },
 })

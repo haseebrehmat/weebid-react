@@ -25,14 +25,14 @@ const sx = {
 }
 
 const Items = memo(({ closeMenu }) => [
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><Person {...iconProps} />Profile</MenuItem>,
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><EmojiObjectsOutlined {...iconProps} />My Pitches</MenuItem>,
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><VolunteerActivism {...iconProps} />My Pledged</MenuItem>,
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><Wallet {...iconProps} />Wallet</MenuItem>,
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><HistoryEdu {...iconProps} />Terms</MenuItem>,
-  <MenuItem onClick={closeMenu} component={Link} to='/' sx={sx}><QuestionMark {...iconProps} />Help</MenuItem>,
-  <Divider color='#666666' />,
-  <Logout closeMenu={closeMenu} btnSx={sx} iconProps={iconProps} />,
+  <MenuItem key={1} onClick={closeMenu} component={Link} to='/' sx={sx}><Person {...iconProps} />Profile</MenuItem>,
+  <MenuItem key={2} onClick={closeMenu} component={Link} to='/' sx={sx}><EmojiObjectsOutlined {...iconProps} />My Pitches</MenuItem>,
+  <MenuItem key={3} onClick={closeMenu} component={Link} to='/' sx={sx}><VolunteerActivism {...iconProps} />My Pledged</MenuItem>,
+  <MenuItem key={4} onClick={closeMenu} component={Link} to='/' sx={sx}><Wallet {...iconProps} />Wallet</MenuItem>,
+  <MenuItem key={5} onClick={closeMenu} component={Link} to='/' sx={sx}><HistoryEdu {...iconProps} />Terms</MenuItem>,
+  <MenuItem key={6} onClick={closeMenu} component={Link} to='/' sx={sx}><QuestionMark {...iconProps} />Help</MenuItem>,
+  <Divider key={7} color='#666666' />,
+  <Logout key={8} closeMenu={closeMenu} btnSx={sx} iconProps={iconProps} />,
 ])
 
 export default Items
