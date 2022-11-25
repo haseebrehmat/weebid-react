@@ -63,3 +63,11 @@ export const avatarProps = (src, alt) => ({
     ml: 1,
   },
 })
+
+export const exploreProps = {
+  display: {
+    sm: 'none',
+    xs: 'none',
+    md: 'block',
+  },
+}

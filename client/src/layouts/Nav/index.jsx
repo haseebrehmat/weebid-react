@@ -9,9 +9,10 @@ import { Logo } from 'layouts'
 import { decodeJwt } from 'utils/helpers'
 
 import searchIcon from 'assets/search.png'
+import logo from 'assets/slider1.png'
 import NavItems from './items'
 import {
-  appbarProps, avatarmenuProps, avatarProps,
+  appbarProps, avatarmenuProps, avatarProps, exploreProps,
   menuProps, rightmenuProps, searchProps, toolbarProps,
 } from './props'
 
@@ -28,12 +29,12 @@ const Nav = () => {
         <Toolbar {...toolbarProps}>
           <Logo />
           <Box {...rightmenuProps}>
-            <MenuItem onClick={handleClose} component={Link} to='/'>Explore</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to='/'>Start a Pitch</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to='/' sx={exploreProps}>Explore</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to='/' sx={exploreProps}>Start a Pitch</MenuItem>
             <Box component='img' src={searchIcon} {...searchProps} />
             <Button {...avatarmenuProps} onClick={handleMenu}>
-              <Typography fontSize='14px' mt='1px'>{user.name}</Typography>
-              <Avatar {...avatarProps(user.avatar, 'A')} />
+              <Typography fontSize='14px' mt='1px'>{user?.name ?? 'Test Name'}</Typography>
+              <Avatar {...avatarProps(user?.avatar ?? logo, 'A')} />
             </Button>
             <Menu onClose={handleClose} {...menuProps(anchorEl)}>
               <Stack padding='10px' spacing={2}>
