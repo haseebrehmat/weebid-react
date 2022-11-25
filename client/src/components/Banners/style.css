@@ -40,11 +40,13 @@
 
 .swiper-slide .slider-content .slider-navigate {
   padding-top: 5px;
+  margin-left: -15px;
 }
 
 .swiper-pagination {
-  left: 115px;
-  font-size: larger;
+  left: 90px;
+  font-size: 25px;
+  padding-bottom: 5px;
 }
 
 #theme-btn2{
@@ -56,5 +58,5 @@
   color: white;
   text-align: center;
   cursor: pointer;
-  margin-inline: 10px;
+  margin-inline: 6px;
 }
