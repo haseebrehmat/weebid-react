@@ -6,3 +6,5 @@ export const Banners = lazy(() => import('components/Banners'))
 export const Logout = lazy(() => import('components/Auth/Logout'))
 export const EmailAndPass = lazy(() => import('components/EmailAndPass'))
 export const Main = lazy(() => import('components/Main'))
+
+export const ProfileImage = lazy(() => import('components/Profile/Image'))
