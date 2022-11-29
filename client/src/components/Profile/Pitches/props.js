@@ -14,7 +14,7 @@ export const tabsProps = tabIndex => ({
       bgcolor: '#292626',
       color: '#949292',
       px: '30px',
-      fontSize: '17px',
+      fontSize: 'clamp(14px, 4vw, 20px)',
       fontWeight: '700',
       letterSpacing: '1px',
     },
