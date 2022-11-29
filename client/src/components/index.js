@@ -8,3 +8,4 @@ export const EmailAndPass = lazy(() => import('components/EmailAndPass'))
 export const Main = lazy(() => import('components/Main'))
 
 export const ProfileImage = lazy(() => import('components/Profile/Image'))
+export const ProfilePitches = lazy(() => import('components/Profile/Pitches'))
