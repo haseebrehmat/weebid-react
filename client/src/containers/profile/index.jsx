@@ -1,15 +1,16 @@
 import { Grid } from '@mui/material'
-import { ProfileImage } from 'components'
 
-const Home = () => (
+import { ProfileImage, ProfilePitches } from 'components'
+
+const Profile = () => (
   <Grid container spacing={2} width='95%' m='auto'>
     <Grid item md={12} lg={4}>
       <ProfileImage />
     </Grid>
     <Grid item md={12} lg={8}>
-      <div>Here comes pithes</div>
+      <ProfilePitches />
     </Grid>
   </Grid>
 )
 
-export default Home
+export default Profile
