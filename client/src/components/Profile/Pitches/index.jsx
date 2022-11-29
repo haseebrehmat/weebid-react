@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import {
-  Box, Tab, Tabs, Typography,
+  Box, Tab, Tabs,
 } from '@mui/material'
 
 import { tabsProps } from './props'
+import ActivePitch from './active'
+import FullfilledPitch from './fullfilled'
 
 const ProfilePitches = () => {
   const [tabIndex, setTabIndex] = useState(0)
@@ -20,15 +22,25 @@ const ProfilePitches = () => {
           <Tab label='Fulfilled Pitches' />
         </Tabs>
       </Box>
-      <Box sx={{ padding: 2 }}>
+      <Box sx={{ pt: 3 }}>
         {tabIndex === 0 && (
-          <Box>
-            <Typography color='white'>The first tab</Typography>
+          <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', flexGrow: 1 }}>
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
+            <ActivePitch />
           </Box>
         )}
         {tabIndex === 1 && (
-          <Box>
-            <Typography color='white'>The second tab</Typography>
+          <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', flexGrow: 1 }}>
+            <FullfilledPitch />
+            <FullfilledPitch />
+            <FullfilledPitch />
+            <FullfilledPitch />
           </Box>
         )}
       </Box>
