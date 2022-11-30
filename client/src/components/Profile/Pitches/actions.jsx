@@ -1,21 +1,15 @@
-import CardActions from '@mui/material/CardActions'
-import IconButton from '@mui/material/Button'
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined'
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined'
+import { CardActions, IconButton } from '@mui/material'
+import { ShareOutlined, ThumbUpOutlined } from '@mui/icons-material'
+
+import { shareBtnProps, likeBtnProps } from './props'
 
 const ActivePitchActions = () => (
-  <CardActions sx={{ p: 2, gap: 1 }}>
-    <IconButton sx={{
-      border: '1px solid #8e8d8d', borderRadius: '24px', color: '#8e8d8d', height: '46px', minWidth: '46px',
-    }}
-    >
-      <ShareOutlinedIcon />
+  <CardActions sx={{ p: 2, gap: 0.5 }}>
+    <IconButton {...shareBtnProps}>
+      <ShareOutlined />
     </IconButton>
-    <IconButton sx={{
-      border: '1px solid #8e8d8d', borderRadius: '24px', color: '#8e8d8d', height: '46px', minWidth: '46px', px: 2,
-    }}
-    >
-      <ThumbUpOutlinedIcon />
+    <IconButton {...likeBtnProps}>
+      <ThumbUpOutlined />
     </IconButton>
   </CardActions>
 )
