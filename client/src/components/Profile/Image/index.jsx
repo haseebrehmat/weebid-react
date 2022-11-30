@@ -23,7 +23,7 @@ const ProfileImage = () => (
         </IconButton>
       </Box>
     </Box>
-    <Button {...makePitchProps}>
+    <Button {...makePitchProps(1)}>
       Make a pitch to Haseeb Rehmat ALi
     </Button>
   </Card>

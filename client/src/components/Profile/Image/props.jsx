@@ -1,11 +1,15 @@
-export const makePitchProps = {
+import { Link } from 'react-router-dom'
+
+export const makePitchProps = id => ({
   id: 'theme-btn-bold',
+  component: Link,
+  to: `/ask/user/${id}`,
   sx: {
     width: '100%',
     mt: '15px',
     height: '45px',
   },
-}
+})
 
 export const threeDotsProps = {
   sx: {
