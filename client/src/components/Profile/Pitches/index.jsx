@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import {
-  Box, Tab, Tabs,
+  Box, Tab, Tabs, Grid,
 } from '@mui/material'
 
-import { tabsProps } from './props'
-import ActivePitch from './active'
 import FullfilledPitch from './fullfilled'
+import ActivePitch from './active'
+import { tabsProps } from './props'
 
 const ProfilePitches = () => {
   const [tabIndex, setTabIndex] = useState(0)
@@ -24,24 +24,40 @@ const ProfilePitches = () => {
       </Box>
       <Box sx={{ pt: 3 }}>
         {tabIndex === 0 && (
-          <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', flexGrow: 1 }}>
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-            <ActivePitch />
-          </Box>
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={6} md={3}>
+              <ActivePitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ActivePitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ActivePitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ActivePitch />
+            </Grid>
+          </Grid>
         )}
         {tabIndex === 1 && (
-          <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', flexGrow: 1 }}>
-            <FullfilledPitch />
-            <FullfilledPitch />
-            <FullfilledPitch />
-            <FullfilledPitch />
-          </Box>
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid> <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid> <Grid item xs={12} sm={6} md={3}>
+              <FullfilledPitch />
+            </Grid>
+          </Grid>
         )}
       </Box>
     </Box>

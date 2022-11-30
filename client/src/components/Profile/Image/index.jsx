@@ -1,13 +1,13 @@
 import {
   CardMedia, Card, Box, Typography, Button, IconButton,
 } from '@mui/material'
+import { MoreHoriz } from '@mui/icons-material'
 
 import {
   makePitchProps, threeDotsProps,
   nameAndActionsProps, imageProps, profileImgCard,
 } from './props'
 
-import { MoreHoriz } from '@mui/icons-material'
 import image from 'assets/slider5.png'
 
 const ProfileImage = () => (

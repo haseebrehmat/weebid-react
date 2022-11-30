@@ -24,3 +24,43 @@ export const tabsProps = tabIndex => ({
     },
   },
 })
+
+export const shareBtnProps = {
+  sx: {
+    border: '1px solid #8e8d8d',
+    borderRadius: '24px',
+    color: '#8e8d8d',
+    height: '46px',
+    minWidth: '46px',
+  },
+}
+
+export const likeBtnProps = {
+  sx: {
+    border: '1px solid #8e8d8d',
+    borderRadius: '24px',
+    color: '#8e8d8d',
+    height: '46px',
+    minWidth: '46px',
+    px: 2,
+  },
+}
+
+export const pitchImgProps = (image, alt) => ({
+  component: 'img',
+  height: '215',
+  image,
+  alt,
+})
+
+export const fulfilledTagProps = {
+  variant: 'inherit',
+  sx: {
+    color: 'white',
+    ml: '10px',
+    bgcolor: '#363130eb',
+    fontWeight: 700,
+    padding: '6px 12px',
+    borderRadius: '8px',
+  },
+}
