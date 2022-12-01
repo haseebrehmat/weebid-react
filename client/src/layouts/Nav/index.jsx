@@ -30,8 +30,10 @@ const Nav = () => {
           <Logo />
           <Box {...rightmenuProps}>
             <MenuItem onClick={handleClose} component={Link} to='/' sx={exploreProps}>Explore</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to='/' sx={exploreProps}>Start a Pitch</MenuItem>
-            <Box component='img' src={searchIcon} {...searchProps} />
+            <MenuItem onClick={handleClose} component={Link} to='/search' sx={exploreProps}>Start a Pitch</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to='/search'>
+              <Box component='img' src={searchIcon} {...searchProps} />
+            </MenuItem>
             <Button {...avatarmenuProps} onClick={handleMenu}>
               <Typography fontSize='14px' mt='1px'>{user?.name ?? 'Test Name'}</Typography>
               <Avatar {...avatarProps(user?.avatar ?? logo, 'A')} />
