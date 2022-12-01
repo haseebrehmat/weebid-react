@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import {
-  Home, Signin, Signup, Profile, Ask, Explore,
+  Home, Signin, Signup, Profile, Ask, Explore, Question,
 } from 'containers'
 
 import Protected from './protected'
@@ -17,6 +17,7 @@ const Main = () => {
       <Route path='/profile' element={<Protected><Profile /></Protected>} />
       <Route path='/search' element={<Protected><Explore /></Protected>} />
       <Route path='/ask/user/:id' element={<Protected><Ask /></Protected>} />
+      <Route path='/question/:id' element={<Protected><Question /></Protected>} />
       <Route path='/create-account' element={<Authenticated><Signup user={user} setUser={setUser} /></Authenticated>} />
       <Route path='/login' element={<Authenticated><Signin user={user} setUser={setUser} /></Authenticated>} />
       <Route path='*' element={<Navigate to='/' />} />

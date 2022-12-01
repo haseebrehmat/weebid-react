@@ -11,18 +11,17 @@ body {
 }
 
 #theme-btn {
-  background-color: #f8b500 !important;
-  color: white !important;
+  background-color: #f8b500;
+  color: white;
 }
 
 #theme-btn-bold {
-  background-color: #f8b500 !important;
-  color: white !important;
+  background-color: #f8b500;
+  color: white;
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 1px;
 }
-
 
 
 /* ----------------------------MUI Classes----------------------------- */
