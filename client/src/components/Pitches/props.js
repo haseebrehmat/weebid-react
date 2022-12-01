@@ -59,8 +59,9 @@ export const fulfilledTagProps = {
     color: 'white',
     ml: '10px',
     bgcolor: '#363130eb',
-    fontWeight: 700,
+    fontWeight: 600,
     padding: '6px 12px',
     borderRadius: '8px',
+    letterSpacing: 1.5,
   },
 }
