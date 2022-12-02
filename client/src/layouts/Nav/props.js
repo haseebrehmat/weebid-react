@@ -2,7 +2,10 @@ export const appbarProps = {
   position: 'static',
   sx: {
     height: '65px',
-    width: '90%',
+    width: {
+      md: '93%',
+      sm: '91%',
+    },
     mx: 'auto',
   },
 }
