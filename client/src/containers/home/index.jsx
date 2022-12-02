@@ -4,7 +4,7 @@ import { Banners, ProfilePitches } from 'components'
 const Home = () => (
   <Stack spacing={2}>
     <Banners />
-    <Box px={10}>
+    <Box px={{ md: 10, sm: 3 }}>
       <ProfilePitches />
     </Box>
   </Stack>
