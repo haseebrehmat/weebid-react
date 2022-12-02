@@ -8,7 +8,8 @@ import {
 } from '@mui/icons-material'
 import image from 'assets/slider5.png'
 
-import { Comments } from 'components'
+// import { Comments } from 'components'
+import { Embed } from 'hyvor-talk-react'
 
 const imageProps = img => ({
   image: img,
@@ -130,7 +131,7 @@ const Pitch = () => {
         </Grid>
       </Grid>
       <Grid container sx={{ p: '2.5em clamp(2.5em, 2vw, 3em)' }}>
-        <Box>
+        <Box width='100%'>
           <Box>
             <Tabs
               value={tabIndex}
@@ -158,9 +159,9 @@ const Pitch = () => {
               <Tab label='Comments' />
             </Tabs>
           </Box>
-          <Box sx={{ padding: 2 }}>
+          <Box sx={{ width: '100%' }}>
             {tabIndex === 0 && (
-              <Box>
+              <Box p={2}>
                 <Stack spacing={4}>
                   <Box sx={{ display: 'flex', mt: 2, gap: 3 }}>
                     <Avatar alt='Profile' src={image} sx={{ width: 64, height: 64 }} />
@@ -188,8 +189,11 @@ const Pitch = () => {
               </Box>
             )}
             {tabIndex === 1 && (
-              <Box>
-                <Comments />
+              <Box sx={{ width: '100%', p: 0 }}>
+                <Embed
+                  websiteId={process.env.REACT_APP_YOUR_WEBSITE_ID}
+                  id={process.env.REACT_APP_WEBPAGE_IDENTIFIER}
+                />
               </Box>
             )}
           </Box>
