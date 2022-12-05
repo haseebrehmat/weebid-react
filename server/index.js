@@ -4,7 +4,6 @@ require("dotenv").config()
 
 const db = require("./app/models")
 const dbSeeder = require('./app/seeders')
-
 const app = express()
 
 var corsOptions = {

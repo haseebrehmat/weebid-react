@@ -20,5 +20,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("./user.model.js")(sequelize, DataTypes)
+db.question = require("./question.model.js")(sequelize, DataTypes)
+
+
+// Relations
+db.question.belongsTo(db.user, { foreignKey: 'senderId' });
+db.question.belongsTo(db.user, { foreignKey: 'receiverId' });
 
 module.exports = db;
