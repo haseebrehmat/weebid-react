@@ -13,7 +13,7 @@ import {
   menuProps, rightmenuProps, searchProps, toolbarProps,
 } from './props'
 
-import logo from 'assets/slider1.png'
+import logo from 'assets/avatar.svg'
 import searchIcon from 'assets/search.png'
 
 const Nav = () => {
@@ -35,7 +35,7 @@ const Nav = () => {
               <Box component='img' src={searchIcon} {...searchProps} />
             </MenuItem>
             <Button {...avatarmenuProps} onClick={handleMenu}>
-              <Typography fontSize='14px' mt='1px'>{user?.name ?? 'Test Name'}</Typography>
+              <Typography fontSize='14px' mt='1px'>{user?.name ?? 'Sign Up'}</Typography>
               <Avatar {...avatarProps(user?.avatar ?? logo, 'A')} />
             </Button>
             <Menu onClose={handleClose} {...menuProps(anchorEl)}>
