@@ -26,7 +26,8 @@ db.sequelize.sync({ force: true })
 
 
 require('./app/routes/auth.routes')(app);
-require("./app/routes/user.routes")(app);
+require('./app/routes/user.routes')(app);
+require('./app/routes/question.routes')(app);
 
 const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`Listening on port ${port}`))

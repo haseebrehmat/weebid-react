@@ -1,10 +1,10 @@
 import http from 'utils/http'
 
-export const signup = async (message, senderId, receiverId) => {
+export const createQuestion = async (message, senderId, receiverId) => {
   try {
-    return await http.post('auth/signup', { message, senderId, receiverId })
-      .then(res => ({ status: 'success', msg: res.data.message }))
+    return await http.post(`ask/user/${receiverId}`, { message, senderId })
+      .then(res => ({ status: 'success', msg: res.data.msg, data: res.data.question }))
   } catch (error) {
-    return ({ status: 'error', msg: error.msg })
+    return ({ status: 'error', msg: error.response.data.msg })
   }
 }
