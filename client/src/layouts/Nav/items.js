@@ -24,8 +24,8 @@ const sx = {
   },
 }
 
-const Items = memo(({ closeMenu }) => [
-  <MenuItem key={1} onClick={closeMenu} component={Link} to='/profile' sx={sx}><Person {...iconProps} />Profile</MenuItem>,
+const Items = memo(({ closeMenu, id }) => [
+  <MenuItem key={1} onClick={closeMenu} component={Link} to={`/user/${id}`} sx={sx}><Person {...iconProps} />Profile</MenuItem>,
   <MenuItem key={2} onClick={closeMenu} component={Link} to='/' sx={sx}><EmojiObjectsOutlined {...iconProps} />My Pitches</MenuItem>,
   <MenuItem key={3} onClick={closeMenu} component={Link} to='/' sx={sx}><VolunteerActivism {...iconProps} />My Pledged</MenuItem>,
   <MenuItem key={4} onClick={closeMenu} component={Link} to='/' sx={sx}><Wallet {...iconProps} />Wallet</MenuItem>,

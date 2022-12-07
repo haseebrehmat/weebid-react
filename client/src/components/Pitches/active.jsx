@@ -4,12 +4,10 @@ import ActivePitchActions from './actions'
 import PitchDetails from './details'
 import { pitchImgProps } from './props'
 
-import image from 'assets/slider5.png'
-
-const ActivePitch = () => (
+const ActivePitch = ({ pitch }) => (
   <Card sx={{ bgcolor: '#000000c2', mb: 2 }}>
-    <CardMedia {...pitchImgProps(image, 'Active Pitch')} />
-    <PitchDetails />
+    <CardMedia {...pitchImgProps(pitch.receiver.avatar, 'Active Pitch')} />
+    <PitchDetails msg={pitch.message} id={pitch.id} />
     <ActivePitchActions />
   </Card>
 )

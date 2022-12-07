@@ -3,10 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     message: {
       type: DataTypes.TEXT
     },
-    status: {
-      type: DataTypes.INTEGER(4),
-      defaultValue: 0,
-    },
     type: {
       type: DataTypes.INTEGER(4),
       defaultValue: 0,

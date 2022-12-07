@@ -14,7 +14,7 @@ const Main = () => {
   return (
     <Routes>
       <Route path='/' element={<Protected><Home /></Protected>} />
-      <Route path='/profile' element={<Protected><Profile /></Protected>} />
+      <Route path='/user/:id' element={<Protected><Profile /></Protected>} />
       <Route path='/search' element={<Protected><Search /></Protected>} />
       <Route path='/ask/user/:id' element={<Protected><Ask /></Protected>} />
       <Route path='/question/:id' element={<Protected><Pitch /></Protected>} />

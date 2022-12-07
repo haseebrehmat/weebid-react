@@ -11,6 +11,8 @@ module.exports = app => {
     next();
   });
 
+  app.get("/api/app", questionController.index);
+
   app.post(
     "/api/ask/user/:id",
     [authJwt.verifyToken, validateRequest(storeQuestion)],

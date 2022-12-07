@@ -8,3 +8,21 @@ export const createQuestion = async (message, senderId, receiverId) => {
     return ({ status: 'error', msg: error.response.data.msg })
   }
 }
+
+export const allQuestions = async () => {
+  try {
+    return await http.get('app')
+      .then(res => ({ data: res.data }))
+  } catch (error) {
+    return ({ status: 'error', msg: error.response.data.msg })
+  }
+}
+
+export const profileQuestions = async (receiverId) => {
+  try {
+    return await http.get('app', { params: { id: receiverId } })
+      .then(res => ({ data: res.data }))
+  } catch (error) {
+    return ({ status: 'error', msg: error.response.data.msg })
+  }
+}

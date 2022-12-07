@@ -6,24 +6,24 @@ import ActivePitchActions from './actions'
 import PitchDetails from './details'
 import { pitchImgProps, fulfilledTagProps } from './props'
 
-import image from 'assets/slider5.png'
+import charityIcon from 'assets/charity.png'
 
-const FullfilledPitch = ({ charity = false }) => (
+const FullfilledPitch = ({ charity = false, pitch }) => (
   <Card sx={{ bgcolor: '#000000c2', mb: 2 }}>
     <Box style={{ position: 'relative' }}>
-      <CardMedia {...pitchImgProps(image, 'Active Pitch')} />
+      <CardMedia {...pitchImgProps(pitch.receiver.avatar, 'Active Pitch')} />
       <Box sx={{ position: 'absolute', top: charity ? '10%' : '80%' }}>
         <Typography {...fulfilledTagProps}>
           ✅ Fullfilled
         </Typography>
         {charity && (
           <Typography {...fulfilledTagProps} mt={1}>
-            💌 Charity
+            <Box component='img' src={charityIcon} /> Charity
           </Typography>
         )}
       </Box>
     </Box>
-    <PitchDetails />
+    <PitchDetails msg={pitch.message} id={pitch.id} />
     <ActivePitchActions />
   </Card>
 )
