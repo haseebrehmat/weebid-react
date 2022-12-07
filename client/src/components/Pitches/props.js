@@ -63,5 +63,8 @@ export const fulfilledTagProps = {
     padding: '6px 12px',
     borderRadius: '8px',
     letterSpacing: 1.5,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 }

@@ -1,4 +1,4 @@
-import { top100Films } from './data'
+import { options } from './data'
 
 export const textFieldProps = {
   placeholder: 'Search by name',
@@ -40,6 +40,6 @@ export const autoCompleteProps = {
   disablePortal: true,
   freeSolo: true,
   id: 'combo-box-demo',
-  options: top100Films,
+  options,
   ListboxProps: listBoxProps,
 }
