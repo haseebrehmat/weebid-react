@@ -13,8 +13,8 @@ exports.create = async (req, res) => {
 
 exports.index = async (req, res) => {
   try {
-    const { page } = req.query;
-    const questions = await Question.findAll({
+    const { page = 1 } = req.query;
+    const questions = await Question.findAndCountAll({
       include: ['sender', 'receiver'],
       limit: 8,
       offset: (page - 1) * 8,

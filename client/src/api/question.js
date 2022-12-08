@@ -12,7 +12,7 @@ export const createQuestion = async (message, senderId, receiverId) => {
 export const allQuestions = async (page = 1) => {
   try {
     return await http.get(`app?page=${page}`)
-      .then(res => ({ data: res.data }))
+      .then(res => ({ data: res.data.rows, count: res.data.count }))
   } catch (error) {
     return ({ status: 'error', msg: error.response.data.msg })
   }
