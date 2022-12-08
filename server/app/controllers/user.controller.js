@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-  User.findAll({ where: condition })
+  User.findAll({ where: condition, include: ['pitches'] })
     .then(data => {
       res.send(data);
     })
@@ -42,22 +42,11 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  const id = req.params.id;
-  User.findByPk(id)
-    .then(data => {
-      if (data) {
-        res.send(data);
-      } else {
-        res.status(404).send({
-          message: `Cannot find User with id=${id}.`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Error retrieving User with id=" + id
-      });
-    });
+  const { id } = req.params;
+  const { page = 1 } = req.query;
+  User.findByPk(id, { include: [{ association: 'pitches', limit: 10, offset: (page - 1) * 10, include: { association: 'receiver', attributes: ['avatar'] } }], attributes: { exclude: ['password'] } })
+    .then(data => data ? res.send(data) : res.status(404).send({ msg: `Cannot find User with id=${id}.` }))
+    .catch(err => res.status(500).send({ msg: err.message || "Error retrieving User with id=" + id }));
 };
 
 exports.update = (req, res) => {

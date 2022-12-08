@@ -8,23 +8,21 @@ import {
   nameAndActionsProps, imageProps, profileImgCard,
 } from './props'
 
-import image from 'assets/slider5.png'
-
-const ProfileImage = () => (
+const ProfileImage = ({ user }) => (
   <Card {...profileImgCard}>
     <Box style={{ position: 'relative' }}>
-      <CardMedia {...imageProps(image)} />
+      <CardMedia {...imageProps(user.avatar)} />
       <Box {...nameAndActionsProps}>
         <Typography variant='inherit' color='white' ml='10px'>
-          Haseeb Rehmat ALi
+          {user.name}
         </Typography>
         <IconButton {...threeDotsProps}>
           <MoreHoriz fontSize='small' />
         </IconButton>
       </Box>
     </Box>
-    <Button {...makePitchProps(1)}>
-      Make a pitch to Haseeb Rehmat ALi
+    <Button {...makePitchProps(user.id)}>
+      Make a pitch to {user.name}
     </Button>
   </Card>
 )

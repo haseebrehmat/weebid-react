@@ -1,5 +1,6 @@
-import Backdrop from '@mui/material/Backdrop'
-import CircularProgress from '@mui/material/CircularProgress'
+import { Backdrop, Box } from '@mui/material'
+// import CircularProgress from '@mui/material/CircularProgress'
+import 'layouts/Loader/style.css'
 
 const Loader = () => {
   const open = true
@@ -10,7 +11,8 @@ const Loader = () => {
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
       >
-        <CircularProgress color='warning' />
+        <Box className='loader'>Pitch.....</Box>
+        {/* <CircularProgress color='warning' /> */}
       </Backdrop>
     </div>
   )

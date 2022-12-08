@@ -40,7 +40,7 @@ const Nav = () => {
             </Button>
             <Menu onClose={handleClose} {...menuProps(anchorEl)}>
               <Stack padding='10px' spacing={2}>
-                <NavItems closeMenu={handleClose} id={user.id} />
+                <NavItems closeMenu={handleClose} id={user?.id} />
               </Stack>
             </Menu>
           </Box>
