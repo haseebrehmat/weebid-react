@@ -26,9 +26,9 @@ db.question = require("./question.model.js")(sequelize, DataTypes)
 /*----------------Relations---------------*/
 // Sender
 db.question.belongsTo(db.user, { foreignKey: 'senderId', as: 'sender' });
-db.user.hasOne(db.question, { foreignKey: 'senderId', as: 'sender' });
 
 db.question.belongsTo(db.user, { foreignKey: 'receiverId', as: 'receiver' });
-db.user.hasOne(db.question, { foreignKey: 'senderId', as: 'receiver' });
+
+db.user.hasMany(db.question, { foreignKey: 'receiverId', as: 'pitches' });
 
 module.exports = db;
