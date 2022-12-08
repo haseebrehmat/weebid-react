@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
+import {
+  useState, useEffect, memo, useRef,
+} from 'react'
 import {
   Box, Tab, Tabs, Grid,
 } from '@mui/material'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import FullfilledPitch from './fullfilled'
 import ActivePitch from './active'
@@ -11,12 +14,20 @@ import { allQuestions } from 'api/question'
 const HomePitches = () => {
   const [tabIndex, setTabIndex] = useState(0)
   const [activePiches, setActivePitches] = useState([])
+  const [page, setPage] = useState(1)
+  const [more, setMore] = useState(true)
+  const dataFetchedRef = useRef(false)
+
+  const fetchQuestions = async () => {
+    const { data, count } = await allQuestions(page)
+    setActivePitches(prevData => [...prevData, ...data])
+    setPage(page + 1)
+    setMore(activePiches.length < count)
+  }
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      const { data } = await allQuestions()
-      setActivePitches(data)
-    }
+    if (dataFetchedRef.current) return
+    dataFetchedRef.current = true
     fetchQuestions()
   }, [])
 
@@ -34,13 +45,20 @@ const HomePitches = () => {
       </Box>
       <Box sx={{ pt: 3 }}>
         {tabIndex === 0 && (
-          <Grid container spacing={1}>
-            {activePiches.map(pitch => (
-              <Grid item xs={12} sm={6} md={3} key={pitch.id}>
-                <ActivePitch pitch={pitch} />
-              </Grid>
-            ))}
-          </Grid>
+          <InfiniteScroll
+            dataLength={activePiches.length}
+            next={fetchQuestions}
+            hasMore={more}
+            loader={<Box component='h1' color='white'>Loading............</Box>}
+          >
+            <Grid container spacing={1}>
+              {activePiches.map(pitch => (
+                <Grid item xs={12} sm={6} md={3} key={pitch.id}>
+                  <ActivePitch pitch={pitch} />
+                </Grid>
+              ))}
+            </Grid>
+          </InfiniteScroll>
         )}
         {tabIndex === 1 && (
           <Grid container spacing={1}>
@@ -56,4 +74,4 @@ const HomePitches = () => {
   )
 }
 
-export default HomePitches
+export default memo(HomePitches)
