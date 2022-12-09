@@ -140,3 +140,11 @@ exports.adminBoard = (req, res) => {
 exports.moderatorBoard = (req, res) => {
   res.status(200).send("Moderator Content.");
 };
+
+exports.search = (req, res) => {
+  const { name } = req.query;
+  var condition = name ? { name: { [Op.like]: `${name}%` } } : null;
+  User.findAll({ where: condition, attributes: ['id', 'name', 'avatar'] })
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send({ msg: err.message || "Some error occurred while retrieving users." }))
+};

@@ -38,6 +38,8 @@ module.exports = app => {
 
   app.get("/api/user/:id", userController.findOne);
 
+  app.get("/api/search/user", userController.search);
+
   app.put("/api/user/:id", userController.update);
 
   app.delete("/api/user/:id", userController.delete);

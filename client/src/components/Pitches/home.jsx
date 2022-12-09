@@ -51,7 +51,7 @@ const HomePitches = () => {
             hasMore={more}
             loader={<Box component='h1' color='white'>Loading............</Box>}
           >
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
               {activePiches.map(pitch => (
                 <Grid item xs={12} sm={6} md={3} key={pitch.id}>
                   <ActivePitch pitch={pitch} />
