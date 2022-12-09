@@ -1,6 +1,8 @@
 import { Box, Button, Typography } from '@mui/material'
 import { ChatBubbleOutline, ArrowBack, ArrowForward } from '@mui/icons-material'
 
+import 'components/Home/Slide/style.css'
+
 const Slide = ({
   next, prev, text = 'Slider', btnText = 'Click', head = 'Heading', featured = 'Featured Talent',
 }) => (

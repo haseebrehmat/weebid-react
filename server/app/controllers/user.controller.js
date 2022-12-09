@@ -43,8 +43,7 @@ exports.findAll = (req, res) => {
 
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  const { page = 1 } = req.query;
-  User.findByPk(id, { include: [{ association: 'pitches', limit: 10, offset: (page - 1) * 10, include: { association: 'receiver', attributes: ['avatar'] } }], attributes: { exclude: ['password'] } })
+  User.findByPk(id, { include: [{ association: 'pitches', limit: 8, include: { association: 'receiver', attributes: ['avatar'] } }], attributes: { exclude: ['password'] } })
     .then(data => data ? res.send(data) : res.status(404).send({ msg: `Cannot find User with id=${id}.` }))
     .catch(err => res.status(500).send({ msg: err.message || "Error retrieving User with id=" + id }));
 };

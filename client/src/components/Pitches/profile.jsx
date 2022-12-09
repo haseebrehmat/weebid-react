@@ -2,15 +2,28 @@ import { useState, memo } from 'react'
 import {
   Box, Tab, Tabs, Grid,
 } from '@mui/material'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import FullfilledPitch from './fullfilled'
 import ActivePitch from './active'
 import { tabsProps } from './props'
 
-const ProfilePitches = ({ pitches }) => {
+import { profileQuestions } from 'api/question'
+
+const ProfilePitches = ({ pitches, id }) => {
   const [tabIndex, setTabIndex] = useState(0)
+  const [page, setPage] = useState(2)
+  const [more, setMore] = useState(true)
+  const [activePitches, setActivePitches] = useState(pitches)
 
   const handleTabChange = (event, newTabIndex) => setTabIndex(newTabIndex)
+
+  const fetchUserQuestions = async () => {
+    const { data, count } = await profileQuestions(id, page)
+    setActivePitches(prevData => [...prevData, ...data])
+    setPage(page + 1)
+    setMore(activePitches.length < count)
+  }
 
   return (
     <Box>
@@ -22,13 +35,20 @@ const ProfilePitches = ({ pitches }) => {
       </Box>
       <Box sx={{ pt: 3 }}>
         {tabIndex === 0 && (
-          <Grid container spacing={1}>
-            {pitches?.map(pitch => (
-              <Grid item xs={12} sm={6} md={3} key={pitch.id}>
-                <ActivePitch pitch={pitch} />
-              </Grid>
-            ))}
-          </Grid>
+          <InfiniteScroll
+            dataLength={activePitches.length}
+            next={fetchUserQuestions}
+            hasMore={more}
+            loader={<Box component='h1' color='white'>Loading............</Box>}
+          >
+            <Grid container spacing={1}>
+              {activePitches?.map(pitch => (
+                <Grid item xs={12} sm={6} md={3} key={pitch.id}>
+                  <ActivePitch pitch={pitch} />
+                </Grid>
+              ))}
+            </Grid>
+          </InfiniteScroll>
         )}
         {tabIndex === 1 && (
           <Grid container spacing={1}>
