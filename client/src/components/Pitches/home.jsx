@@ -51,7 +51,7 @@ const HomePitches = () => {
             dataLength={activePiches.length}
             next={fetchQuestions}
             hasMore={more}
-            loader={<Skeleton />}
+            loader={<Skeleton gap={3} />}
           >
             <Grid container spacing={2}>
               {activePiches.map(pitch => (
