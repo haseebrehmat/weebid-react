@@ -46,11 +46,11 @@ export const likeBtnProps = {
   },
 }
 
-export const pitchImgProps = (image, alt) => ({
+export const pitchImgProps = (image, name) => ({
   component: 'img',
   height: '215',
   image,
-  alt,
+  onError: e => e.target.src = `https://via.placeholder.com/215/000000/FFFFFF/?text=${name}`,
 })
 
 export const fulfilledTagProps = {
