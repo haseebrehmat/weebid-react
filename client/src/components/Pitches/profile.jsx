@@ -34,12 +34,12 @@ const ProfilePitches = ({ pitches, id }) => {
         </Tabs>
       </Box>
       <Box sx={{ pt: 3 }}>
-        {tabIndex === 0 && (
+        {(tabIndex === 0 && activePitches.length > 0) ? (
           <InfiniteScroll
             dataLength={activePitches.length}
             next={fetchUserQuestions}
             hasMore={more}
-            loader={<Box component='h1' color='white'>Loading............</Box>}
+            loader={activePitches.length > 8 && <Box component='h1' color='white'>Loading............</Box>}
           >
             <Grid container spacing={1}>
               {activePitches?.map(pitch => (
@@ -49,6 +49,8 @@ const ProfilePitches = ({ pitches, id }) => {
               ))}
             </Grid>
           </InfiniteScroll>
+        ) : (
+          <Box component='h1' color='white'>No Active Pitches Yet</Box>
         )}
         {tabIndex === 1 && (
           <Grid container spacing={1}>
