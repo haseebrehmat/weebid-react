@@ -8,3 +8,12 @@ export const userProfile = async (id) => {
     return ({ status: 'error', msg: error.response.data.msg })
   }
 }
+
+export const searchInfluencers = async (name) => {
+  try {
+    return await http.get(`search/user?name=${name}`)
+      .then(res => ({ data: res.data }))
+  } catch (error) {
+    return ({ status: 'error', msg: error.response.data.msg })
+  }
+}

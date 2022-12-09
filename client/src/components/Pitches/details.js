@@ -2,7 +2,7 @@ import { CardContent, Typography, Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const PitchDetails = ({ msg, id }) => (
-  <CardContent>
+  <CardContent sx={{ pb: 1 }}>
     <Box component={Link} to={`/question/${id}`} sx={{ color: 'white', textDecoration: 'none' }}>
       <Typography gutterBottom variant='h5'>
         {msg}

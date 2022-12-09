@@ -1,5 +1,3 @@
-import { options } from './data'
-
 export const textFieldProps = {
   placeholder: 'Search by name',
   sx: {
@@ -21,9 +19,7 @@ export const textFieldProps = {
 
 export const listBoxProps = {
   sx: {
-    minHeight: '100vh !important',
     bgcolor: '#333333',
-    color: '#d6d5d5',
     '& :hover': {
       bgcolor: 'blue !important',
     },
@@ -40,6 +36,5 @@ export const autoCompleteProps = {
   disablePortal: true,
   freeSolo: true,
   id: 'combo-box-demo',
-  options,
   ListboxProps: listBoxProps,
 }

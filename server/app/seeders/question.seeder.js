@@ -6,8 +6,8 @@ const questions = [];
 for (let index = 1; index <= 1000; index++) {
   questions.push({
     message: `It is the message ${index}`,
-    senderId: Math.floor(Math.random() * 100) + 2,
-    receiverId: Math.floor(Math.random() * 100) + 2,
+    senderId: Math.floor(Math.random() * 1000) + 2,
+    receiverId: Math.floor(Math.random() * 1000) + 2,
   });
 }
 
