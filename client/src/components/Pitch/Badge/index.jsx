@@ -1,13 +1,14 @@
 import { Box, Badge } from '@mui/material'
 import { CommentOutlined } from '@mui/icons-material'
 
-import PitchBadgeImage from './image'
-import { badgeStyle } from './props'
+import { badgeStyle, shapeStyles } from './props'
 
-const PitchBadge = () => (
+import image from 'assets/slider5.png'
+
+const PitchBadge = ({ img = image }) => (
   <Box>
     <Badge overlap='circular' badgeContent={<CommentOutlined fontSize='small' />} sx={badgeStyle}>
-      {PitchBadgeImage}
+      <Box component='img' sx={{ ...shapeStyles }} src={img} />
     </Badge>
   </Box>
 )

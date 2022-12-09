@@ -1,4 +1,4 @@
-import { useState, memo } from 'react'
+import { useState, memo, useEffect } from 'react'
 import {
   Box, Tab, Tabs, Grid,
 } from '@mui/material'
@@ -14,7 +14,7 @@ const ProfilePitches = ({ pitches, id }) => {
   const [tabIndex, setTabIndex] = useState(0)
   const [page, setPage] = useState(2)
   const [more, setMore] = useState(true)
-  const [activePitches, setActivePitches] = useState(pitches)
+  const [activePitches, setActivePitches] = useState([])
 
   const handleTabChange = (event, newTabIndex) => setTabIndex(newTabIndex)
 
@@ -24,6 +24,10 @@ const ProfilePitches = ({ pitches, id }) => {
     setPage(page + 1)
     setMore(activePitches.length < count)
   }
+
+  useEffect(() => {
+    setActivePitches(pitches)
+  }, [pitches])
 
   return (
     <Box>
