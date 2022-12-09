@@ -9,6 +9,8 @@ import ActivePitch from './active'
 import { tabsProps } from './props'
 
 import { profileQuestions } from 'api/question'
+import { Skeleton } from 'layouts'
+import Placeholder from './placeholder'
 
 const ProfilePitches = ({ pitches, id }) => {
   const [tabIndex, setTabIndex] = useState(0)
@@ -43,7 +45,7 @@ const ProfilePitches = ({ pitches, id }) => {
             dataLength={activePitches.length}
             next={fetchUserQuestions}
             hasMore={more}
-            loader={activePitches.length > 8 && <Box component='h1' color='white'>Loading............</Box>}
+            loader={activePitches.length > 8 && <Skeleton />}
           >
             <Grid container spacing={1}>
               {activePitches?.map(pitch => (
@@ -53,9 +55,7 @@ const ProfilePitches = ({ pitches, id }) => {
               ))}
             </Grid>
           </InfiniteScroll>
-        ) : (
-          <Box component='h1' color='white'>No Active Pitches Yet</Box>
-        )}
+        ) : <Placeholder />}
         {tabIndex === 1 && (
           <Grid container spacing={1}>
             {pitches?.map(pitch => (
