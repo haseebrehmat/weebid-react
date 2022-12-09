@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: Biko;
+  src: url('assets/fonts/Biko_Regular.otf'), url('assets/fonts/Biko_Black.otf'), url('assets/fonts/Biko_Bold.otf'), url('assets/fonts/Biko_Light-Restricted.otf') ;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: Biko;
+  -webkit-font-smoothing: antialiased;
+  background-color: #131313;
+}
+
+#theme-btn {
+  background-color: #f8b500;
+  color: white;
+}
+
+#theme-btn-bold {
+  background-color: #f8b500;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+/* ----------------------------MUI Classes----------------------------- */
+/* Dropdown Menu */
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  background-color: #212529 !important;
+  color: white !important;
+  border-radius: 15px !important;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  padding-top: 0px !important;
 }
