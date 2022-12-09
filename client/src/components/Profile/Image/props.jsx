@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 
-export const makePitchProps = id => ({
+export const makePitchProps = user => ({
   id: 'theme-btn-bold',
   component: Link,
-  to: `/ask/user/${id}`,
+  to: `/ask/user/${user.id}`,
+  state: { name: user.name, avatar: user.avatar },
   sx: {
     width: '100%',
     mt: '15px',

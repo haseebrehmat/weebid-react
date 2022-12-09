@@ -1,6 +1,6 @@
 import http from 'utils/http'
 
-export const createQuestion = async (message, senderId, receiverId) => {
+export const createQuestion = async (message, receiverId, senderId) => {
   try {
     return await http.post(`ask/user/${receiverId}`, { message, senderId })
       .then(res => ({ status: 'success', msg: res.data.msg, data: res.data.question }))

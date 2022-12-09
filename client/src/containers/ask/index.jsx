@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import {
   Box, Typography, TextField, Button,
@@ -15,16 +15,18 @@ import {
 } from './props'
 
 const Ask = () => {
+  const redirect = useNavigate()
   const { id: receiverId } = useParams()
+  const { state: { name, avatar } } = useLocation()
   const [message, setMessage] = useState('')
   const senderId = id()
 
   const handleClick = async () => {
     const { status, msg, data } = await createQuestion(message, receiverId, senderId)
     if (status === 'error') {
-      console.log(status, msg)
-    } else {
       console.log(status, msg, data)
+    } else {
+      redirect(`/user/${receiverId}`)
     }
   }
   const handleChange = e => setMessage(e.target.value)
@@ -32,8 +34,8 @@ const Ask = () => {
   return (
     <Box {...mainBoxProps}>
       <Typography {...whatsYourPitchProps}>What`s your pitch?</Typography>
-      <PitchBadge />
-      <Typography {...pitchForProps}>Pitch for<Typography {...influencerNameProps}>Haseeb Rehmat ALi</Typography></Typography>
+      <PitchBadge img={avatar} />
+      <Typography {...pitchForProps}>Pitch for<Typography {...influencerNameProps}>{name}</Typography></Typography>
       <TextField {...pitchTextareaProps} defaultValue={message} onChange={handleChange} />
       <Button {...sendPitchBtnProps} onClick={handleClick}>Send Pitch</Button>
     </Box>

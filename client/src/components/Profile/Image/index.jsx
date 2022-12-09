@@ -21,7 +21,7 @@ const ProfileImage = ({ user }) => (
         </IconButton>
       </Box>
     </Box>
-    <Button {...makePitchProps(user.id)}>
+    <Button {...makePitchProps(user)}>
       Make a pitch to {user.name}
     </Button>
   </Card>

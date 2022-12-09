@@ -19,7 +19,7 @@ const Profile = () => {
       setLoading(true)
     }
     fetchUser()
-  }, [])
+  }, [id])
 
   return loading ? (
     <Grid container spacing={2} width='95%' m='auto'>
