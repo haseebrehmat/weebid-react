@@ -23,10 +23,10 @@ const Profile = () => {
 
   return loading ? (
     <Grid container spacing={2} width='95%' m='auto'>
-      <Grid item md={12} lg={4}>
+      <Grid item md={12} lg={4} sm={12} xs={12}>
         <ProfileImage user={user} />
       </Grid>
-      <Grid item md={12} lg={8}>
+      <Grid item md={12} lg={8} sm={12} xs={12}>
         <ProfilePitches pitches={user.pitches} id={id} />
       </Grid>
     </Grid>

@@ -10,6 +10,8 @@ import FullfilledPitch from './fullfilled'
 import ActivePitch from './active'
 import { tabsProps } from './props'
 import { allQuestions } from 'api/question'
+import Placeholder from './placeholder'
+import { Skeleton } from 'layouts'
 
 const HomePitches = () => {
   const [tabIndex, setTabIndex] = useState(0)
@@ -44,12 +46,12 @@ const HomePitches = () => {
         </Tabs>
       </Box>
       <Box sx={{ pt: 3 }}>
-        {tabIndex === 0 && (
+        {(tabIndex === 0 && activePiches.length > 0) ? (
           <InfiniteScroll
             dataLength={activePiches.length}
             next={fetchQuestions}
             hasMore={more}
-            loader={<Box component='h1' color='white'>Loading............</Box>}
+            loader={<Skeleton />}
           >
             <Grid container spacing={2}>
               {activePiches.map(pitch => (
@@ -59,7 +61,7 @@ const HomePitches = () => {
               ))}
             </Grid>
           </InfiniteScroll>
-        )}
+        ) : <Placeholder />}
         {tabIndex === 1 && (
           <Grid container spacing={1}>
             {activePiches.map(pitch => (
