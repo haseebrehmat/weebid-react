@@ -12,7 +12,7 @@ users[0] = {
   role: "admin",
 };
 
-for (let index = 1; index <= 1000; index++) {
+for (let index = 1; index <= 50; index++) {
   users[index] = {
     name: `${generateString(6)} User ${index}`,
     email: `user${index}@test.com`,

@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Box, Skeleton } from '@mui/material'
 
-export default memo(() => (
-  <Box display='flex' gap={1}>
+export default memo(({ gap = 1 }) => (
+  <Box display='flex' gap={gap}>
     <Skeleton
       sx={{ bgcolor: 'grey.900' }}
       variant='rectangular'
