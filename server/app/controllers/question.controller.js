@@ -14,27 +14,28 @@ exports.create = async (req, res) => {
 exports.index = async (req, res) => {
   try {
     const { page = 1 } = req.query;
-    const questions = await Question.findAndCountAll({
+    const response = await Question.findAndCountAll({
       include: ['sender', 'receiver'],
       limit: 8,
       offset: (page - 1) * 8,
     });
-    return res.send(questions);
+    return res.send(response);
   } catch (error) {
     return res.status(500).send({ msg: err.message || "Some error occurred while retrieving questions." });
   }
 }
 
-// exports.index = async (req, res) => {
-//   try {
-//     const { id } = req.query;
-//     var condition = id ? { receiverId: id } : null;
-//     const questions = await Question.findAll({
-//       include: ['sender', 'receiver'],
-//       where: condition,
-//     });
-//     return res.send(questions);
-//   } catch (error) {
-//     return res.status(500).send({ msg: err.message || "Some error occurred while retrieving users." });
-//   }
-// }
+exports.userQuestions = async (req, res) => {
+  try {
+    const { receiverId, page = 2 } = req.query;
+    const response = await Question.findAndCountAll({
+      include: ['sender', 'receiver'],
+      where: { receiverId },
+      limit: 8,
+      offset: (page - 1) * 8,
+    });
+    return res.send(response);
+  } catch (error) {
+    return res.status(500).send({ msg: err.message || "Some error occurred while retrieving users." });
+  }
+}

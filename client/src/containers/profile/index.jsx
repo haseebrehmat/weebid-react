@@ -27,7 +27,7 @@ const Profile = () => {
         <ProfileImage user={user} />
       </Grid>
       <Grid item md={12} lg={8}>
-        <ProfilePitches pitches={user.pitches} />
+        <ProfilePitches pitches={user.pitches} id={id} />
       </Grid>
     </Grid>
   ) : <Loader />
