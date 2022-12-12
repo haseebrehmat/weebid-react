@@ -1,43 +1,49 @@
-/* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect } from 'react'
 import {
   CardMedia, Grid, Typography,
 } from '@mui/material'
-import image from 'assets/slider5.png'
+import { useParams } from 'react-router-dom'
 
 import {
   PitchBanner, PitchUser, PledgesAndComments, PitchActions,
 } from 'components'
+import { Loader } from 'layouts'
 
-const imageProps = img => ({
-  image: img,
-  style: {
-    height: 'clamp(400px, 35vw, 600px)',
-  },
-  component: 'img',
-  title: 'Profile Image',
-  alt: 'Profile Image',
-})
+import { getQuestion } from 'api/question'
 
-const Pitch = () => (
-  <Grid container>
-    <Grid container spacing={2} sx={{ px: 8, my: 5 }}>
-      <Grid item md={6}>
-        <CardMedia {...imageProps(image)} />
+import { imageProps, msgProps, pledgedAmountProps } from './props'
+
+const Pitch = () => {
+  const { id } = useParams()
+  const [loading, setLoading] = useState(false)
+  const [pitch, setPitch] = useState()
+
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      const { data } = await getQuestion(id)
+      setPitch(data)
+      setLoading(true)
+    }
+    fetchQuestion()
+  }, [id])
+
+  return loading ? (
+    <Grid container>
+      <Grid container spacing={2} sx={{ px: 8, my: 5 }}>
+        <Grid item md={6}>
+          <CardMedia {...imageProps(pitch.receiver.avatar)} />
+        </Grid>
+        <Grid item md={6}>
+          <PitchUser sender={pitch.sender} receiver={pitch.receiver} />
+          <Typography {...msgProps}>{pitch.message}</Typography>
+          <Typography {...pledgedAmountProps}>$3 USD Pledged</Typography>
+          <PitchActions />
+        </Grid>
       </Grid>
-      <Grid item md={6}>
-        <PitchUser />
-        <Typography color='#d9d9d9' mt={3} fontSize='clamp(20px, 2vw, 36px)' lineHeight='clamp(32px, 3vw, 46px)'>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        </Typography>
-        <Typography color='#5ABBA2' mt={3} fontSize='20px'>
-          $3 USD Pledged
-        </Typography>
-        <PitchActions />
-      </Grid>
+      <PitchBanner />
+      <PledgesAndComments />
     </Grid>
-    <PitchBanner />
-    <PledgesAndComments />
-  </Grid>
-)
+  ) : <Loader />
+}
 
 export default Pitch

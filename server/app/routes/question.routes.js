@@ -11,13 +11,15 @@ module.exports = app => {
     next();
   });
 
-  app.get("/api/app", questionController.index);
+  app.get("/api/app", questionController.findAll);
 
-  app.get("/api/questions/user", questionController.userQuestions);
+  app.get("/api/questions/user", questionController.findUserQuestions);
+
+  app.get("/api/question/:id", questionController.findOne);
 
   app.post(
     "/api/ask/user/:id",
     [authJwt.verifyToken, validateRequest(storeQuestion)],
-    questionController.create
+    questionController.createQuestion
   );
 };
