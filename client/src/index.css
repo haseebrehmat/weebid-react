@@ -1,6 +1,6 @@
 @font-face {
   font-family: Biko;
-  src: url('assets/fonts/Biko_Regular.otf'), url('assets/fonts/Biko_Black.otf'), url('assets/fonts/Biko_Bold.otf'), url('assets/fonts/Biko_Light-Restricted.otf') ;
+  src: url('assets/fonts/Biko_Regular.otf'), url('assets/fonts/Biko_Black.otf'), url('assets/fonts/Biko_Bold.otf'), url('assets/fonts/Biko_Light-Restricted.otf');
 }
 
 body {
@@ -34,4 +34,11 @@ body {
 
 .css-6hp17o-MuiList-root-MuiMenu-list {
   padding-top: 0px !important;
+}
+
+/* for change border color*/
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: 1px solid #686868 !important;
+  outline: none !important;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%) !important;
 }

@@ -1,0 +1,19 @@
+#outlined-adornment-pledge {
+  background-color: transparent;
+  border: 1px solid #686868;
+  border-radius: 8px;
+  color: #f3f3f3;
+  height: auto;
+  text-align: left !important;
+}
+
+#outlined-adornment-pledge2 {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  border-radius: 8px;
+  padding-block: 10px;
+  color: #f3f3f3;
+  height: auto;
+  text-align: left !important;
+}
