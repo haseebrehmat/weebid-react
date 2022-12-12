@@ -3,22 +3,20 @@ import {
   Typography, Avatar, Box, Stack,
 } from '@mui/material'
 
-import image from 'assets/slider5.png'
+import {
+  confirmedProps, avatarProps, receiverProps, senderProps,
+} from './props'
 
-const PitchUser = memo(() => (
+const PitchUser = memo(({ sender, receiver }) => (
   <>
-    <Typography variant='body1' color='#f8b500' fontWeight={700}>
+    <Typography {...confirmedProps}>
       CONFIRMED PITCH
     </Typography>
     <Box sx={{ display: 'flex', mt: 2, gap: 3 }}>
-      <Avatar alt='Profile' src={image} sx={{ width: 64, height: 64 }} />
+      <Avatar {...avatarProps(receiver.avatar)} />
       <Stack>
-        <Typography variant='h6' color='white' fontWeight={700}>
-          Haseeb Rehmat Ali
-        </Typography>
-        <Typography variant='h6' color='#7b7b7b' fontWeight={100}>
-          Pitched By Haseeb Rehmat Ali | 11 Pledges
-        </Typography>
+        <Typography {...receiverProps}>{receiver.name}</Typography>
+        <Typography {...senderProps}>Pitched By {sender.name} | 11 Pledges</Typography>
       </Stack>
     </Box>
   </>

@@ -26,3 +26,12 @@ export const profileQuestions = async (receiverId, page = 1) => {
     return ({ status: 'error', msg: error.response.data.msg })
   }
 }
+
+export const getQuestion = async (questionId) => {
+  try {
+    return await http.get(`question/${questionId}`)
+      .then(res => ({ data: res.data }))
+  } catch ({ response }) {
+    return ({ status: 'error', msg: response.data.msg })
+  }
+}
