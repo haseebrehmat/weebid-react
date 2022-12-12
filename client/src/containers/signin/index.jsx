@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Stack, Typography } from '@mui/material'
 
-import { EmailAndPass, AuthActions, AuthLogo } from 'components'
-import { AlertModal } from 'layouts'
+import {
+  AlertModal, AuthActions, AuthLogo, EmailAndPass,
+} from 'components'
 
 import { signin } from 'api/auth'
 
@@ -34,7 +35,7 @@ const Signin = ({ user, setUser }) => {
         <EmailAndPass email={email} pass={password} onChange={handleChange} />
         <Typography sx={forgotSx}>Forgot Password?</Typography>
         <AuthActions login />
-        {error.length > 0 && <AlertModal info={error} clearError={setError} />}
+        {error?.length > 0 && <AlertModal info={error} clearError={setError} />}
       </Stack>
     </>
   )

@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Stack, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-import { AuthActions, AuthLogo, EmailAndPass } from 'components'
-import { AlertModal, Checkbox } from 'layouts'
+import {
+  AlertModal, AuthActions, AuthLogo, EmailAndPass,
+} from 'components'
+import { Checkbox } from 'layouts'
 
 import { signup } from 'api/auth'
 
