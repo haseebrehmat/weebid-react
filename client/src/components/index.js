@@ -1,8 +1,10 @@
 import { lazy } from 'react'
 
 export const AuthActions = lazy(() => import('components/Auth/Actions'))
+export const AlertModal = lazy(() => import('components/Modals/Alert'))
 export const AuthLogo = lazy(() => import('components/Auth/Logo'))
 export const Banners = lazy(() => import('components/Home/Banners'))
+export const BaseModal = lazy(() => import('components/Modals/Base'))
 export const EmailAndPass = lazy(() => import('components/Auth/EmailAndPass'))
 export const HomePitches = lazy(() => import('components/Pitches/home'))
 export const Logout = lazy(() => import('components/Auth/Logout'))
