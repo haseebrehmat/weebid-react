@@ -21,14 +21,22 @@ db.sequelize = sequelize;
 
 db.user = require("./user.model.js")(sequelize, DataTypes)
 db.question = require("./question.model.js")(sequelize, DataTypes)
+db.bid = require("./bid.model.js")(sequelize, DataTypes)
 
 
 /*----------------Relations---------------*/
-// Sender
 db.question.belongsTo(db.user, { foreignKey: 'senderId', as: 'sender' });
 
 db.question.belongsTo(db.user, { foreignKey: 'receiverId', as: 'receiver' });
 
 db.user.hasMany(db.question, { foreignKey: 'receiverId', as: 'pitches' });
+
+db.bid.belongsTo(db.user, { foreignKey: 'userId', as: 'user' });
+
+db.bid.belongsTo(db.question, { foreignKey: 'questionId', as: 'question' });
+
+db.user.hasMany(db.bid, { foreignKey: 'userId', as: 'pledges' });
+
+db.question.hasMany(db.bid, { foreignKey: 'questionId', as: 'pledges' });
 
 module.exports = db;
