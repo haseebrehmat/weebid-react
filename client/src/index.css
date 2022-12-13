@@ -42,3 +42,15 @@ body {
   outline: none !important;
   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%) !important;
 }
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
+  border-radius: 50%;
+  background: #5ABBA2;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active,
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed{
+  box-sizing: border-box;
+  color: #5ABBA2 !important;
+  border: 2px solid #F8B500 ;
+}
