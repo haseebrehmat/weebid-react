@@ -6,7 +6,7 @@ exports.createQuestion = async (req, res) => {
     const { id: receiverId } = req.params
     const { message, senderId } = req.body
     const question = await Question.create({ message, receiverId, senderId })
-    return res.json({ msg: "Question was created successfully!", question: question.toJSON() })
+    return res.json({ msg: "Question was created successfully!", data: question.toJSON() })
   } catch (error) {
     return res.status(500).send({ msg: err.message })
   }
