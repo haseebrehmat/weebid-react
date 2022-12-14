@@ -1,10 +1,12 @@
 import { memo, useState } from 'react'
 import {
-  Box, OutlinedInput, FormControl,
+  Box, OutlinedInput, FormControl, Stepper, Step, StepButton,
 } from '@mui/material'
+import { useMutation } from 'react-query'
 
 import { BaseModal } from 'components'
-import Steppers from './steps'
+import { getMsg, id } from 'utils/helpers'
+import { createBid } from 'api/bid'
 
 const amountFieldInput = {
   placeholder: '0 USD',
@@ -28,22 +30,54 @@ const pledgeLabelProps = {
   fontSize: '16px',
 }
 
-const PledgeModal = ({ title = 'Make a Pledge', clearShow = null }) => {
-  const [amount, setAmount] = useState(0)
+const steps = ['Pledge', 'Payment', 'Confirm']
 
-  const handleClick = () => {
-    if (amount) console.log(amount)
+const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) => {
+  const [activeStep, setActiveStep] = useState(0)
+  const [completed, setCompleted] = useState({ 0: false, 1: false, 2: false })
+  const [amount, setAmount] = useState(0)
+  const {
+    mutate, isError, error, data,
+  } = useMutation(createBid, {
+    onSuccess: () => setActiveStep(2),
+  })
+  const userId = id()
+
+  const handleClick = () => mutate({ cents: amount, questionId, userId })
+
+  const handleStep = (step) => () => {
+    setActiveStep(step)
+    setCompleted(flags => ({ ...flags, [step]: true }))
   }
 
   const handleChange = e => setAmount(e.target.value)
 
   return (
     <BaseModal title={title} clearShow={clearShow} handleClick={handleClick} btnText='Proceed to Payment'>
-      <Steppers />
-      <FormControl sx={{ width: '98%' }}>
-        <Box {...pledgeLabelProps}>Pledge Amount</Box>
-        <OutlinedInput {...amountFieldInput} value={amount} onChange={handleChange} />
-      </FormControl>
+      <Box sx={{ width: '100%', mb: 4, mt: 2 }}>
+        <Stepper nonLinear activeStep={activeStep} alternativeLabel>
+          {steps.map((label, index) => (
+            <Step key={label} completed={completed[index + 1]}>
+              <StepButton color='inherit' onClick={handleStep(index)}>
+                <Box color='#7B7B7B'>{label}</Box>
+              </StepButton>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+      {activeStep === 0 && (
+        <FormControl sx={{ width: '98%' }}>
+          <Box {...pledgeLabelProps}>Pledge Amount</Box>
+          <OutlinedInput {...amountFieldInput} value={amount} onChange={handleChange} />
+          {isError ? <Box component='span' color='#686868' mt={2} mx={1}>{getMsg(error)}</Box> : null}
+        </FormControl>
+      )}
+      {activeStep === 1 && (
+        <Box>Hello World</Box>
+      )}
+      {activeStep === 2 && (
+        <Box>{data.msg}</Box>
+      )}
     </BaseModal>
   )
 }

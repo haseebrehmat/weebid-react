@@ -13,7 +13,7 @@ module.exports = app => {
 
   app.post(
     "/api/make/pledge/:id",
-    [authJwt.verifyToken, validateRequest(storeBid)],
+    [validateRequest(storeBid)],
     bidController.createBid
   );
 };

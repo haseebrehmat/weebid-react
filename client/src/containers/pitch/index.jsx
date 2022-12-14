@@ -37,7 +37,7 @@ const Pitch = () => {
           <PitchUser sender={pitch.sender} receiver={pitch.receiver} />
           <Typography {...msgProps}>{pitch.message}</Typography>
           <Typography {...pledgedAmountProps}>$3 USD Pledged</Typography>
-          <PitchActions />
+          <PitchActions id={id} />
         </Grid>
       </Grid>
       <PitchBanner />
