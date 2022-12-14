@@ -14,3 +14,5 @@ export const id = () => {
   const { user: { id: userId } } = decodeJwt()
   return userId
 }
+
+export const getMsg = error => error?.response?.data?.msg
