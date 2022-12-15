@@ -8,7 +8,7 @@ import Pledges from './pledges'
 
 import { tabsProps } from './props'
 
-const PledgesAndComments = memo(() => {
+const PledgesAndComments = memo(({ pledges, pitchBy }) => {
   const [tabIndex, setTabIndex] = useState(0)
   const handleTabChange = (event, newTabIndex) => setTabIndex(newTabIndex)
 
@@ -22,7 +22,7 @@ const PledgesAndComments = memo(() => {
           </Tabs>
         </Box>
         <Box sx={{ width: '100%' }}>
-          {tabIndex === 0 && <Pledges />}
+          {tabIndex === 0 && (pledges.length > 0 ? <Pledges pledges={pledges} pitchBy={pitchBy} /> : <h1>No pledge found</h1>)}
           {tabIndex === 1 && <Comments />}
         </Box>
       </Box>

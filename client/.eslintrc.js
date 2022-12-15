@@ -41,6 +41,7 @@ module.exports = {
     'max-len': 'off', // max-length
     'no-return-assign': 'off', // var = value
     'import/prefer-default-export': 'off', // defautl export
-    'import/order': 'off', // import order
+    'import/order': 'off', // import order,
+    'react/no-array-index-key': 'off', // index as key
   },
 }

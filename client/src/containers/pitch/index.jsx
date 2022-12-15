@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { memo, useMemo } from 'react'
 import {
   CardMedia, Grid, Typography,
 } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { useQuery } from 'react-query'
 
 import {
   PitchBanner, PitchUser, PledgesAndComments, PitchActions,
@@ -10,40 +11,35 @@ import {
 import { Loader } from 'layouts'
 
 import { getQuestion } from 'api/question'
-
 import { imageProps, msgProps, pledgedAmountProps } from './props'
+import { calculatePledged } from 'utils/helpers'
 
 const Pitch = () => {
   const { id } = useParams()
-  const [loading, setLoading] = useState(false)
-  const [pitch, setPitch] = useState()
+  const {
+    isLoading, isError, isSuccess, error, data: pitch,
+  } = useQuery({ queryKey: ['question', id], queryFn: () => getQuestion(id), staleTime: 6000 })
+  const totalPledged = useMemo(() => (isSuccess ? calculatePledged(pitch.pledges) : 0), [pitch])
 
-  useEffect(() => {
-    const fetchQuestion = async () => {
-      const { data } = await getQuestion(id)
-      setPitch(data)
-      setLoading(true)
-    }
-    fetchQuestion()
-  }, [id])
+  if (isError) console.log(error)
 
-  return loading ? (
+  return isLoading ? <Loader /> : (
     <Grid container>
       <Grid container spacing={2} sx={{ px: 8, my: 5 }}>
         <Grid item md={6}>
           <CardMedia {...imageProps(pitch.receiver.avatar)} />
         </Grid>
         <Grid item md={6}>
-          <PitchUser sender={pitch.sender} receiver={pitch.receiver} />
+          <PitchUser sender={pitch.sender} receiver={pitch.receiver} total={pitch.pledges.length} />
           <Typography {...msgProps}>{pitch.message}</Typography>
-          <Typography {...pledgedAmountProps}>$3 USD Pledged</Typography>
+          <Typography {...pledgedAmountProps}>${totalPledged} USD Pledged</Typography>
           <PitchActions id={id} />
         </Grid>
       </Grid>
       <PitchBanner />
-      <PledgesAndComments />
+      <PledgesAndComments pledges={pitch.pledges} pitchBy={pitch.sender} />
     </Grid>
-  ) : <Loader />
+  )
 }
 
-export default Pitch
+export default memo(Pitch)

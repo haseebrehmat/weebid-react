@@ -7,7 +7,7 @@ import {
   confirmedProps, avatarProps, receiverProps, senderProps,
 } from './props'
 
-const PitchUser = memo(({ sender, receiver }) => (
+const PitchUser = memo(({ sender, receiver, total = 0 }) => (
   <>
     <Typography {...confirmedProps}>
       CONFIRMED PITCH
@@ -16,7 +16,7 @@ const PitchUser = memo(({ sender, receiver }) => (
       <Avatar {...avatarProps(receiver.avatar)} />
       <Stack>
         <Typography {...receiverProps}>{receiver.name}</Typography>
-        <Typography {...senderProps}>Pitched By {sender.name} | 11 Pledges</Typography>
+        <Typography {...senderProps}>Pitched By {sender.name} | {total} Pledges</Typography>
       </Stack>
     </Box>
   </>
