@@ -16,7 +16,7 @@ exports.findAll = async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const response = await Question.findAndCountAll({
-      include: ['sender', 'receiver'],
+      include: ['sender', 'receiver', { association: 'pledges', attributes: ['cents', 'questionId'] }],
       limit: 8,
       offset: (page - 1) * 8,
     });
