@@ -1,4 +1,4 @@
-const { question: Question } = require("../models")
+const { question: Question, Sequelize } = require("../models")
 const { receiverAttr, senderAttr } = require('../utils/constants')
 
 exports.createQuestion = async (req, res) => {
@@ -44,7 +44,13 @@ exports.findUserQuestions = async (req, res) => {
 exports.findOne = async (req, res) => {
   try {
     const { id } = req.params;
-    const response = await Question.findByPk(id, { include: [{ association: 'sender', attributes: senderAttr }, { association: 'receiver', attributes: receiverAttr }] });
+    const response = await Question.findByPk(id, {
+      include: [
+        { association: 'sender', attributes: senderAttr },
+        { association: 'receiver', attributes: receiverAttr },
+        { association: 'pledges', attributes: ['cents'], include: [{ association: 'user', attributes: ['name', 'avatar'] }] }
+      ],
+    });
     return res.send(response);
   } catch (error) {
     return res.status(500).send({ msg: err.message || "Some error occurred while retrieving question." });
