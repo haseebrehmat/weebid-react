@@ -1,12 +1,16 @@
 import { memo, useState } from 'react'
 import {
-  Box, OutlinedInput, FormControl, Stepper, Step, StepButton,
+  Box, OutlinedInput, FormControl, Stepper, Step, StepButton, Button, Typography,
 } from '@mui/material'
 import { useMutation } from 'react-query'
 
 import { BaseModal } from 'components'
 import { getMsg, id } from 'utils/helpers'
 import { createBid } from 'api/bid'
+import { proceedBtnProps } from './props'
+
+import pledgeSuccess from 'assets/pledge-success.png'
+import { queryClient } from 'utils/clients'
 
 const amountFieldInput = {
   placeholder: '0 USD',
@@ -39,7 +43,10 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
   const {
     mutate, isError, error, data,
   } = useMutation(createBid, {
-    onSuccess: () => setActiveStep(2),
+    onSuccess: () => {
+      setActiveStep(2)
+      queryClient.invalidateQueries('question', questionId)
+    },
   })
   const userId = id()
 
@@ -52,9 +59,11 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
 
   const handleChange = e => setAmount(e.target.value)
 
+  const proceedBtn = <Button onClick={handleClick} {...proceedBtnProps}>Proceed to payment</Button>
+
   return (
-    <BaseModal title={title} clearShow={clearShow} handleClick={handleClick} btnText='Proceed to Payment'>
-      <Box sx={{ width: '100%', mb: 4, mt: 2 }}>
+    <BaseModal title={activeStep !== 2 && title} clearShow={clearShow} btn={activeStep === 0 && proceedBtn}>
+      {activeStep === 0 && (<Box sx={{ width: '100%', mb: 4, mt: 2 }}>
         <Stepper nonLinear activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index + 1]}>
@@ -64,7 +73,7 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
             </Step>
           ))}
         </Stepper>
-      </Box>
+      </Box>)}
       {activeStep === 0 && (
         <FormControl sx={{ width: '98%' }}>
           <Box {...pledgeLabelProps}>Pledge Amount</Box>
@@ -76,7 +85,10 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
         <Box>Hello World</Box>
       )}
       {activeStep === 2 && (
-        <Box>{data.msg}</Box>
+        <Box sx={{ width: '98%', textAlign: 'center' }}>
+          <Box component='img' src={pledgeSuccess} width='90%' />
+          <Typography variant='body1' color='white'>{data.msg}</Typography>
+        </Box>
       )}
     </BaseModal>
   )
