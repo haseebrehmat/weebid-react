@@ -20,6 +20,7 @@ export const getMsg = error => error?.response?.data?.msg
 export const calculatePledged = pledges => {
   let total = 0
   pledges.forEach(({ cents }) => total += cents)
+  console.log(total)
   return total
 }
 
