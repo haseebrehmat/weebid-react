@@ -1,13 +1,19 @@
 import { memo } from 'react'
-import { DialogContentText } from '@mui/material'
+import { DialogContentText, Button } from '@mui/material'
 
 import { BaseModal } from 'components'
+
+import { okBtnProps, msgProps } from './props'
 
 const AlertModal = ({
   title = 'Alert', info = 'Something gone wrong', clearError = null,
 }) => (
-  <BaseModal title={title} clearError={clearError} btnText='Ok'>
-    <DialogContentText id='alert-dialog-slide-description' color='white' fontSize={16}>{info}</DialogContentText>
+  <BaseModal
+    title={title}
+    clearError={clearError}
+    btn={<Button onClick={clearError} {...okBtnProps}>Ok</Button>}
+  >
+    <DialogContentText {...msgProps}>{info}</DialogContentText>
   </BaseModal>
 )
 

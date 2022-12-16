@@ -4,14 +4,14 @@ import {
 } from '@mui/material'
 
 import {
-  dialogActionsProps, dialogProps, actionBtnProps, dividerProps, cancelBtnProps,
+  dialogActionsProps, dialogProps, dividerProps, cancelBtnProps,
 } from './props'
 import './style.css'
 
 const Transition = forwardRef((props, ref) => <Slide direction='down' ref={ref} {...props} />)
 
 const BaseModal = ({
-  children, title, clearError = null, clearSuccess = null, clearShow = null, btnText = 'Close', handleClick = null,
+  children, title, clearError = null, clearSuccess = null, clearShow = null, btn = null,
 }) => {
   const [open, setOpen] = useState(true)
   const handleClose = () => {
@@ -28,7 +28,7 @@ const BaseModal = ({
         <DialogContent sx={{ width: '100%' }}>{children}</DialogContent>
       </Stack>
       <DialogActions {...dialogActionsProps}>
-        <Button onClick={handleClick || handleClose} {...actionBtnProps}>{btnText}</Button>
+        {btn}
         <Divider {...dividerProps} />
         <Button onClick={handleClose} {...cancelBtnProps}>Cancel</Button>
       </DialogActions>
