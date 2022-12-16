@@ -11,7 +11,7 @@ import './style.css'
 const Transition = forwardRef((props, ref) => <Slide direction='down' ref={ref} {...props} />)
 
 const BaseModal = ({
-  children, title, clearError = null, clearSuccess = null, clearShow = null, btn = null,
+  children, title, clearError = null, clearSuccess = null, clearShow = null, btn = null, cancel = true,
 }) => {
   const [open, setOpen] = useState(true)
   const handleClose = () => {
@@ -27,11 +27,17 @@ const BaseModal = ({
         <DialogTitle variant='h5'>{title}</DialogTitle>
         <DialogContent sx={{ width: '100%' }}>{children}</DialogContent>
       </Stack>
-      <DialogActions {...dialogActionsProps}>
-        {btn}
-        <Divider {...dividerProps} />
-        <Button onClick={handleClose} {...cancelBtnProps}>Cancel</Button>
-      </DialogActions>
+      {(btn && cancel) ? (
+        <DialogActions {...dialogActionsProps}>
+          {btn}
+          {cancel ? (
+            <>
+              <Divider {...dividerProps} />
+              <Button onClick={handleClose} {...cancelBtnProps}>Cancel</Button>
+            </>
+          ) : null}
+        </DialogActions>
+      ) : null}
     </Dialog>
   )
 }

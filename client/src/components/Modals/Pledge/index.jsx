@@ -46,6 +46,9 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
     onSuccess: () => {
       setActiveStep(2)
       queryClient.invalidateQueries('question', questionId)
+      setTimeout(() => {
+        clearShow(false)
+      }, 3000)
     },
   })
   const userId = id()
@@ -62,8 +65,8 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
   const proceedBtn = <Button onClick={handleClick} {...proceedBtnProps}>Proceed to payment</Button>
 
   return (
-    <BaseModal title={activeStep !== 2 && title} clearShow={clearShow} btn={activeStep === 0 && proceedBtn}>
-      {activeStep === 0 && (<Box sx={{ width: '100%', mb: 4, mt: 2 }}>
+    <BaseModal title={activeStep !== 2 && title} clearShow={clearShow} btn={activeStep === 0 && proceedBtn} cancel={activeStep !== 2}>
+      {activeStep !== 2 && (<Box sx={{ width: '100%', mb: 4, mt: 2 }}>
         <Stepper nonLinear activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index + 1]}>
@@ -87,7 +90,8 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
       {activeStep === 2 && (
         <Box sx={{ width: '98%', textAlign: 'center' }}>
           <Box component='img' src={pledgeSuccess} width='90%' />
-          <Typography variant='body1' color='white'>{data.msg}</Typography>
+          <Typography color='white' fontSize='17px'>Pledge Received!</Typography>
+          <Typography color='#5ABBA2' fontSize='14px'>{data.msg}</Typography>
         </Box>
       )}
     </BaseModal>
