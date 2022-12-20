@@ -1,4 +1,4 @@
-const { question: Question, Sequelize } = require("../models")
+const { question: Question } = require("../models")
 const { receiverAttr, senderAttr } = require('../utils/constants')
 
 exports.createQuestion = async (req, res) => {
