@@ -48,9 +48,11 @@ exports.findOne = async (req, res) => {
       include: [
         { association: 'sender', attributes: senderAttr },
         { association: 'receiver', attributes: receiverAttr },
-        { association: 'pledges', attributes: ['cents'], include: [{ association: 'user', attributes: ['name', 'avatar'] }] }
       ],
     });
+    response.setDataValue('pledges', await response.getPledges(
+      { limit: 8, attributes: ['cents'], include: [{ association: 'user', attributes: ['name', 'avatar'] }] }
+    ))
     return res.send(response);
   } catch (error) {
     return res.status(500).send({ msg: err.message || "Some error occurred while retrieving question." });
