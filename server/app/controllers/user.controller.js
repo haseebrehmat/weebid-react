@@ -42,27 +42,17 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findByPk(id, {
-      attributes: { exclude: ['password'] },
-    });
-    const pitches = await user.getPitches({
-      limit: 8,
-      include: [{
-        association: 'receiver',
-        attributes: ['avatar'],
-      },
-      {
-        association: 'pledges',
-        attributes: ['cents']
-      }]
+  const { id } = req.params;
+  await User.findByPk(id, { attributes: { exclude: ['password'] } })
+    .then(async user => {
+      user.setDataValue('pitches', await user.getPitches({
+        limit: 8,
+        include: [{ association: 'receiver', attributes: ['avatar'] },
+        { association: 'pledges', attributes: ['cents'] }]
+      }))
+      return user ? res.send(user) : res.status(404).send({ msg: `Cannot find User with id=${id}.` })
     })
-    user.setDataValue('pitches', pitches)
-    return user ? res.send(user) : res.status(404).send({ msg: `Cannot find User with id=${id}.` })
-  } catch (error) {
-    return res.status(500).send({ msg: error.message || "Error retrieving User with id=" + id });
-  }
+    .catch(error => res.status(500).send({ msg: error.message || "Error retrieving User with id=" + id }))
 };
 
 exports.update = (req, res) => {
