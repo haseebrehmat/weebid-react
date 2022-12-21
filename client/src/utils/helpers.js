@@ -34,3 +34,21 @@ export const getOrdinal = n => {
   }
   return n + ord
 }
+
+export const getContributerEmoji = n => {
+  switch (n) {
+    case 1:
+      n = '🥇'
+      break
+    case 2:
+      n = '🥈'
+      break
+    case 3:
+      n = '🥉'
+      break
+    default:
+      n = null
+      break
+  }
+  return n
+}

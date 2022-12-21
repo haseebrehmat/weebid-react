@@ -7,7 +7,7 @@ import { useQuery } from 'react-query'
 import { Loader } from 'layouts'
 
 import { questionPledges } from 'api/bid'
-import { getOrdinal } from 'utils/helpers'
+import { getContributerEmoji, getOrdinal } from 'utils/helpers'
 import { moreBtnProps } from './props'
 
 const Pledges = ({
@@ -59,7 +59,7 @@ const Pledges = ({
                 Pledged ${pledge.cents}
               </Typography>
               <Typography variant='h6' color='#7b7b7b' fontWeight={100}>
-                {getOrdinal(index + 1)} place contributer
+                {getContributerEmoji(index + 1)} {getOrdinal(index + 1)} place contributer
               </Typography>
             </Stack>
           </Box>
