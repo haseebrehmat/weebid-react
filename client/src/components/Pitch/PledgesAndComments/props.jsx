@@ -19,3 +19,13 @@ export const tabsProps = value => ({
     },
   },
 })
+
+export const moreBtnProps = {
+  sx: {
+    p: '0.6em 2em',
+    border: '2px solid #7B7B7B',
+    color: '#7B7B7B',
+    fontSize: '17px',
+    borderRadius: '8px',
+  },
+}
