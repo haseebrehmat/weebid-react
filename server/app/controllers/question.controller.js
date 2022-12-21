@@ -1,4 +1,4 @@
-const { question: Question } = require("../models")
+const { question: Question, Sequelize } = require("../models")
 const { receiverAttr, senderAttr } = require('../utils/constants')
 
 exports.createQuestion = async (req, res) => {
@@ -45,9 +45,16 @@ exports.findOne = async (req, res) => {
   try {
     const { id } = req.params;
     const response = await Question.findByPk(id, {
+      attributes: {
+        include: [
+          [Sequelize.fn("COUNT", Sequelize.col("pledges.id")), "totalPledges"],
+          [Sequelize.fn("SUM", Sequelize.col("pledges.cents")), "totalPledged"]
+        ]
+      },
       include: [
         { association: 'sender', attributes: senderAttr },
         { association: 'receiver', attributes: receiverAttr },
+        { association: 'pledges' }
       ],
     });
     response.setDataValue('pledges', await response.getPledges(
@@ -55,6 +62,6 @@ exports.findOne = async (req, res) => {
     ))
     return res.send(response);
   } catch (error) {
-    return res.status(500).send({ msg: err.message || "Some error occurred while retrieving question." });
+    return res.status(500).send({ msg: error.message || "Some error occurred while retrieving question." });
   }
 }

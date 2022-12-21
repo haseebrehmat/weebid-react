@@ -11,9 +11,12 @@ module.exports = app => {
     next();
   });
 
+  app.get("/api/question/bids", bidController.findQuestionBids);
+
   app.post(
     "/api/make/pledge/:id",
     [validateRequest(storeBid)],
     bidController.createBid
   );
+
 };
