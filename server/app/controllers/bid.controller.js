@@ -12,3 +12,18 @@ exports.createBid = async (req, res) => {
     return res.status(500).send({ msg: err.message })
   }
 };
+
+exports.findQuestionBids = async (req, res) => {
+  try {
+    const { questionId, page = 2 } = req.query;
+    const response = await Bid.findAndCountAll({
+      include: [{ association: 'user', attributes: ['name', 'avatar'] }],
+      where: { questionId },
+      limit: 8,
+      offset: (page - 1) * 8,
+    });
+    return res.send(response);
+  } catch (error) {
+    return res.status(500).send({ msg: error.message || "Some error occurred while retrieving user questions." });
+  }
+}
