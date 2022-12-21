@@ -16,9 +16,9 @@ exports.createBid = async (req, res) => {
 exports.findQuestionBids = async (req, res) => {
   try {
     const { questionId, page = 2 } = req.query;
-    const response = await Bid.findAndCountAll({
-      include: [{ association: 'user', attributes: ['name', 'avatar'] }],
+    const response = await Bid.findAll({
       where: { questionId },
+      include: [{ association: 'user', attributes: ['name', 'avatar'] }],
       limit: 8,
       offset: (page - 1) * 8,
     });

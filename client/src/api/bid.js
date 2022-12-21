@@ -7,8 +7,8 @@ export const createBid = async ({ cents, questionId, userId }) => {
 
 export const questionPledges = async (questionId, page = 1) => {
   try {
-    return await http.get('question/bids', { params: { questionId, page } })
-      .then(res => ({ data: res.data.rows, count: res.data.count }))
+    return await http.get('bids/question', { params: { questionId, page } })
+      .then(res => ({ bids: res.data }))
   } catch (error) {
     return ({ status: 'error', msg: error.response.data.msg })
   }

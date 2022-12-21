@@ -35,7 +35,7 @@ const Pitch = () => {
         </Grid>
       </Grid>
       <PitchBanner />
-      <PledgesAndComments pledges={pitch.pledges} pitchBy={pitch.sender} total={pitch.totalPledges} />
+      <PledgesAndComments pledges={pitch.pledges} pitchBy={pitch.sender} total={pitch.totalPledges} id={id} />
     </Grid>
   )
 }
