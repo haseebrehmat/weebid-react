@@ -6,7 +6,7 @@ import {
 
 import { BaseModal } from 'components'
 
-import { createBid } from 'api/bid'
+import { createBid, updateBid } from 'api/bid'
 import { queryClient } from 'utils/clients'
 import { getMsg, id } from 'utils/helpers'
 import { proceedBtnProps, amountFieldInput, pledgeLabelProps } from './props'
@@ -20,24 +20,36 @@ const PledgeModal = ({
 }) => {
   const [activeStep, setActiveStep] = useState(0)
   const [completed, setCompleted] = useState({ 0: false, 1: false, 2: false })
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(userPledge?.cents ?? 0)
 
-  console.log(userPledge)
+  const successHandler = () => {
+    setActiveStep(2)
+    queryClient.invalidateQueries('question', questionId)
+    setTimeout(() => {
+      clearShow(false)
+    }, 3000)
+  }
 
   const {
-    mutate: add, isError, error, data,
+    mutate: add, isError: addIsError, error: addError, data: addData,
   } = useMutation(createBid, {
-    onSuccess: () => {
-      setActiveStep(2)
-      queryClient.invalidateQueries('question', questionId)
-      setTimeout(() => {
-        clearShow(false)
-      }, 3000)
-    },
+    onSuccess: () => successHandler(),
+  })
+
+  const {
+    mutate: update, isError: updateIsError, error: updateError, data: updateData,
+  } = useMutation(updateBid, {
+    onSuccess: () => successHandler(),
   })
   const userId = id()
 
-  const handleClick = () => add({ cents: amount, questionId, userId })
+  const handleClick = () => {
+    if (userPledge === null) {
+      add({ cents: amount, questionId, userId })
+    } else {
+      update({ cents: amount, questionId, userId })
+    }
+  }
 
   const handleStep = (step) => () => {
     setActiveStep(step)
@@ -65,7 +77,7 @@ const PledgeModal = ({
         <FormControl sx={{ width: '98%' }}>
           <Box {...pledgeLabelProps}>Pledge Amount</Box>
           <OutlinedInput {...amountFieldInput} value={amount} onChange={handleChange} />
-          {isError ? <Box component='span' color='#686868' mt={2} mx={1}>{getMsg(error)}</Box> : null}
+          {addIsError || updateIsError ? <Box component='span' color='#686868' mt={2} mx={1}>{getMsg(addError || updateError)}</Box> : null}
         </FormControl>
       )}
       {activeStep === 1 && (
@@ -75,7 +87,7 @@ const PledgeModal = ({
         <Box sx={{ width: '98%', textAlign: 'center' }}>
           <Box component='img' src={pledgeSuccess} width='90%' />
           <Typography color='white' fontSize='17px'>Pledge Received!</Typography>
-          <Typography color='#5ABBA2' fontSize='14px'>{data.msg}</Typography>
+          <Typography color='#5ABBA2' fontSize='14px'>{addData?.msg ?? updateData?.msg}</Typography>
         </Box>
       )}
     </BaseModal>

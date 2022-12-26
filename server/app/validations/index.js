@@ -1,6 +1,6 @@
 const { storeQuestion } = require('./question')
-const { storeBid } = require('./bid')
+const { storeBid, updateBid } = require('./bid')
 
 module.exports = {
-  storeQuestion, storeBid,
+  storeQuestion, storeBid, updateBid,
 }
