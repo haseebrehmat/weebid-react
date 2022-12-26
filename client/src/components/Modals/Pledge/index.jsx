@@ -1,47 +1,31 @@
 import { memo, useState } from 'react'
+import { useMutation } from 'react-query'
 import {
   Box, OutlinedInput, FormControl, Stepper, Step, StepButton, Button, Typography,
 } from '@mui/material'
-import { useMutation } from 'react-query'
 
 import { BaseModal } from 'components'
-import { getMsg, id } from 'utils/helpers'
+
 import { createBid } from 'api/bid'
-import { proceedBtnProps } from './props'
+import { queryClient } from 'utils/clients'
+import { getMsg, id } from 'utils/helpers'
+import { proceedBtnProps, amountFieldInput, pledgeLabelProps } from './props'
 
 import pledgeSuccess from 'assets/pledge-success.png'
-import { queryClient } from 'utils/clients'
-
-const amountFieldInput = {
-  placeholder: '0 USD',
-  sx: {
-    color: '#f3f3f3',
-    m: 'auto',
-    width: 'inherit',
-    fontSize: '30px',
-    border: '1px solid #686868',
-    borderRadius: '10px',
-    height: '57px',
-  },
-  startAdornment: '$',
-  autoFocus: true,
-}
-
-const pledgeLabelProps = {
-  pb: 2,
-  pl: 1.1,
-  fontWeight: 700,
-  fontSize: '16px',
-}
 
 const steps = ['Pledge', 'Payment', 'Confirm']
 
-const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) => {
+const PledgeModal = ({
+  title = 'Make a Pledge', clearShow = null, questionId, userPledge = null,
+}) => {
   const [activeStep, setActiveStep] = useState(0)
   const [completed, setCompleted] = useState({ 0: false, 1: false, 2: false })
   const [amount, setAmount] = useState(0)
+
+  console.log(userPledge)
+
   const {
-    mutate, isError, error, data,
+    mutate: add, isError, error, data,
   } = useMutation(createBid, {
     onSuccess: () => {
       setActiveStep(2)
@@ -53,7 +37,7 @@ const PledgeModal = ({ title = 'Make a Pledge', clearShow = null, questionId }) 
   })
   const userId = id()
 
-  const handleClick = () => mutate({ cents: amount, questionId, userId })
+  const handleClick = () => add({ cents: amount, questionId, userId })
 
   const handleStep = (step) => () => {
     setActiveStep(step)

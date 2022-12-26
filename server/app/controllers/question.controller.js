@@ -44,6 +44,7 @@ exports.findUserQuestions = async (req, res) => {
 exports.findOne = async (req, res) => {
   try {
     const { id } = req.params;
+    const { user } = req
     const response = await Question.findByPk(id, {
       attributes: {
         include: [
@@ -60,6 +61,7 @@ exports.findOne = async (req, res) => {
     response.setDataValue('pledges', await response.getPledges(
       { limit: 8, attributes: ['cents'], include: [{ association: 'user', attributes: ['name', 'avatar'] }] }
     ))
+    response.setDataValue('userPledge', await response.getPledges({ where: { userId: user.id }, limit: 1 }))
     return res.send(response);
   } catch (error) {
     return res.status(500).send({ msg: error.message || "Some error occurred while retrieving question." });

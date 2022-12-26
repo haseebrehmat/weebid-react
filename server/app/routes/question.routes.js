@@ -15,7 +15,9 @@ module.exports = app => {
 
   app.get("/api/questions/user", questionController.findUserQuestions);
 
-  app.get("/api/question/:id", questionController.findOne);
+  app.get("/api/question/:id",
+    [authJwt.verifyToken],
+    questionController.findOne);
 
   app.post(
     "/api/ask/user/:id",

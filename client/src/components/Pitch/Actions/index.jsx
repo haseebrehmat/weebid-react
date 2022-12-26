@@ -6,8 +6,9 @@ import { PledgeModal } from 'components'
 
 import { actionBtnProps, makePledgeBtnProps } from './props'
 
-const PitchActions = ({ id }) => {
+const PitchActions = ({ id, pledge = null }) => {
   const [pledgeModal, setPledgeModal] = useState(false)
+  console.log(pledge)
 
   return (
     <>
@@ -25,7 +26,7 @@ const PitchActions = ({ id }) => {
       <Button {...makePledgeBtnProps} onClick={() => setPledgeModal(true)}>
         Make a Pledge
       </Button>
-      {pledgeModal ? <PledgeModal clearShow={setPledgeModal} questionId={id} /> : null}
+      {pledgeModal ? <PledgeModal clearShow={setPledgeModal} questionId={id} userPledge={pledge} /> : null}
     </>
   )
 }
