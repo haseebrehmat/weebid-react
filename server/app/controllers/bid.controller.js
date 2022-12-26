@@ -27,3 +27,15 @@ exports.findQuestionBids = async (req, res) => {
     return res.status(500).send({ msg: error.message || "Some error occurred while retrieving user questions." });
   }
 }
+
+exports.updateBid = async (req, res) => {
+  try {
+    const { id: questionId, userId } = req.params
+    await Bid.update(req.body, {
+      where: { questionId: questionId, userId: userId }
+    });
+    return res.json({ msg: 'Your pledge has been updated.' })
+  } catch (error) {
+    return res.status(500).send({ msg: err.message })
+  }
+};

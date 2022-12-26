@@ -1,6 +1,6 @@
 const { authJwt, validateRequest } = require("../middlewares")
 const bidController = require("../controllers/bid.controller.js");
-const { storeBid } = require('../validations')
+const { storeBid, updateBid } = require('../validations')
 
 module.exports = app => {
   app.use(function (req, res, next) {
@@ -17,6 +17,12 @@ module.exports = app => {
     "/api/make/pledge/:id",
     [validateRequest(storeBid)],
     bidController.createBid
+  );
+
+  app.patch(
+    "/api/edit/pledge/:id/:userId",
+    [validateRequest(updateBid)],
+    bidController.updateBid
   );
 
 };

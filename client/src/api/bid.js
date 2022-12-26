@@ -5,6 +5,11 @@ export const createBid = async ({ cents, questionId, userId }) => {
   return response.data
 }
 
+export const updateBid = async ({ cents, questionId, userId }) => {
+  const response = await http.patch(`edit/pledge/${questionId}/${userId}`, { cents })
+  return response.data
+}
+
 export const questionPledges = async (questionId, page = 1) => {
   try {
     return await http.get('bids/question', { params: { questionId, page } })
