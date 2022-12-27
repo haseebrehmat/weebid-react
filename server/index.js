@@ -15,6 +15,7 @@ app.use(express.json())
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 
+/*-----------Migrations & Seeder---------*/
 db.sequelize.sync({ force: true })
   .then(() => {
     console.log("Synced db.");
@@ -26,10 +27,7 @@ db.sequelize.sync({ force: true })
 
 
 /*---------------Routes---------------*/
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
-require('./app/routes/question.routes')(app);
-require('./app/routes/bid.routes')(app);
+require('./app/routes')(app);
 
 const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`Listening on port ${port}`))

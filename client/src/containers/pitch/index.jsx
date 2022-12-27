@@ -11,7 +11,7 @@ import {
 import { Loader } from 'layouts'
 
 import { getQuestion } from 'api/question'
-import { getMsg, removeToken } from 'utils/helpers'
+import { getMsg } from 'utils/helpers'
 import { imageProps, msgProps, pledgedAmountProps } from './props'
 
 const Pitch = () => {
@@ -23,7 +23,6 @@ const Pitch = () => {
 
   if (isError) {
     if (error.response.data.expired) {
-      removeToken()
       redirect('/login')
     }
     console.log(getMsg(error))
@@ -38,7 +37,7 @@ const Pitch = () => {
         <Grid item md={6}>
           <PitchUser sender={pitch.sender} receiver={pitch.receiver} total={pitch.totalPledges} />
           <Typography {...msgProps}>{pitch.message}</Typography>
-          <Typography {...pledgedAmountProps}>${pitch.totalPledged} USD Pledged</Typography>
+          <Typography {...pledgedAmountProps}>${new Intl.NumberFormat().format(pitch.totalPledged)} USD Pledged</Typography>
           <PitchActions id={id} pledge={pitch.userPledge[0]} />
         </Grid>
       </Grid>

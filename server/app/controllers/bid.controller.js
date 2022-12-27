@@ -39,3 +39,14 @@ exports.updateBid = async (req, res) => {
     return res.status(500).send({ msg: err.message })
   }
 };
+
+exports.deleteBid = (req, res) => {
+  const { id } = req.params
+  Bid.destroy({ where: { id } })
+    .then(num => res.send({
+      msg: num == 1
+        ? "Bid was deleted successfully!"
+        : `Cannot delete Bid with id=${id}. Maybe Pledge was not found!`
+    }))
+    .catch(err => res.status(500).send({ msg: err.message || "Could not delete Bid with id=" + id }));
+}

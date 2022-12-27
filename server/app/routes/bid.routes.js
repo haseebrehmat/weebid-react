@@ -25,4 +25,6 @@ module.exports = app => {
     bidController.updateBid
   );
 
+  app.delete("/api/delete/pledge/:id", bidController.deleteBid);
+
 };

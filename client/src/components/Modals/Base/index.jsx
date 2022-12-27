@@ -27,7 +27,7 @@ const BaseModal = ({
         <DialogTitle variant='h5'>{title}</DialogTitle>
         <DialogContent sx={{ width: '100%' }}>{children}</DialogContent>
       </Stack>
-      {(btn && cancel) ? (
+      {(btn || cancel) ? (
         <DialogActions {...dialogActionsProps}>
           {btn}
           {cancel ? (
