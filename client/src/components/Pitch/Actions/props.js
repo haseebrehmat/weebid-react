@@ -28,3 +28,20 @@ export const actionBtnProps = {
     },
   },
 }
+
+export const deleteBtnProps = {
+  sx: {
+    border: '1px solid red',
+    borderRadius: '24px',
+    color: 'red',
+    height: '46px',
+    minWidth: '46px',
+    px: 2,
+    mr: 2,
+    mb: 2,
+    '&:hover': {
+      color: 'white',
+      bgcolor: '#de1738',
+    },
+  },
+}

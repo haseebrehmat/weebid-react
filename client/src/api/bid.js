@@ -18,3 +18,9 @@ export const questionPledges = async (questionId, page = 1) => {
     return ({ status: 'error', msg: error.response.data.msg })
   }
 }
+
+export const deleteBid = async ({ id }) => {
+  const response = await http.delete(`delete/pledge/${id}`)
+  console.log(response.data)
+  return response.data
+}

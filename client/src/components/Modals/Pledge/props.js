@@ -30,3 +30,38 @@ export const pledgeLabelProps = {
   fontWeight: 700,
   fontSize: '16px',
 }
+
+export const confirmBtnProps = {
+  variant: 'contained',
+  sx: {
+    bgcolor: '#e14343',
+    borderRadius: '8px',
+    marginRight: 2,
+    '&:hover': {
+      bgcolor: 'white',
+      color: 'red',
+      fontWeight: 400,
+    },
+  },
+}
+
+export const keepBtnProps = {
+  variant: 'outlined',
+  sx: {
+    borderRadius: '8px',
+    border: '1px solid grey',
+    color: 'grey',
+    '&:hover': {
+      border: '1px solid grey',
+      bgcolor: 'grey',
+      color: 'white',
+      fontWeight: 400,
+    },
+  },
+}
+
+export const msgProps = {
+  color: 'white',
+  fontSize: 16,
+  textAlign: 'center',
+}
