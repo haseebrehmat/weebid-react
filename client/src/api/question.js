@@ -9,13 +9,9 @@ export const createQuestion = async (message, receiverId, senderId) => {
   }
 }
 
-export const allQuestions = async (page = 1) => {
-  try {
-    return await http.get(`app?page=${page}`)
-      .then(res => ({ data: res.data.rows, count: res.data.count }))
-  } catch (error) {
-    return ({ status: 'error', msg: error.response.data.msg })
-  }
+export const allQuestions = async (page) => {
+  const { data: { count, rows: data } } = await http.get(`app?page=${page}`)
+  return { data, count }
 }
 
 export const profileQuestions = async (receiverId, page = 1) => {

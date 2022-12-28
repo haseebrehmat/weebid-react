@@ -1,5 +1,6 @@
-import { CardContent, Typography, Box } from '@mui/material'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import { CardContent, Typography, Box } from '@mui/material'
 
 const PitchDetails = ({
   msg, id, raised = 0, pledges = 0,
@@ -16,4 +17,4 @@ const PitchDetails = ({
   </CardContent>
 )
 
-export default PitchDetails
+export default memo(PitchDetails)
