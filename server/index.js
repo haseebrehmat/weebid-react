@@ -33,19 +33,19 @@ db.sequelize.sync({ force: true })
 require('./app/routes')(app);
 
 /*---------------Cronjobs-------------*/
-let flag = true;
-cron.schedule("*/5 * * * * *", function () {
-  console.log("-----------------------------------------------------------");
-  let heap = process.memoryUsage().heapUsed / 1024 / 1024;
-  let date = new Date().toLocaleString();
-  const freeMemory = Math.round((os.freemem() * 100) / os.totalmem()) + "%";
-  let csv = `${flag ? 'Date, Time, Heap, Memory\n' : ''} ${date}, ${heap}, ${freeMemory}\n`;
-  fs.appendFile('logs.csv', csv, function (err) {
-    if (err) throw err;
-    flag = false
-    console.log('server details logged!');
-  });
-});
+// let flag = true;
+// cron.schedule("*/5 * * * * *", function () {
+//   console.log("-----------------------------------------------------------");
+//   let heap = process.memoryUsage().heapUsed / 1024 / 1024;
+//   let date = new Date().toLocaleString();
+//   const freeMemory = Math.round((os.freemem() * 100) / os.totalmem()) + "%";
+//   let csv = `${flag ? 'Date, Time, Heap, Memory\n' : ''} ${date}, ${heap}, ${freeMemory}\n`;
+//   fs.appendFile('logs.csv', csv, function (err) {
+//     if (err) throw err;
+//     flag = false
+//     console.log('server details logged!');
+//   });
+// });
 
 const port = process.env.PORT || 3001
 app.listen(port, () => {

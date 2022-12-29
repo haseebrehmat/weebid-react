@@ -1,4 +1,5 @@
-const db = require("../models")
+const db = require("../models");
+const { getPaginatedData } = require("../utils/helpers");
 const User = db.user
 const Op = db.Sequelize.Op
 
@@ -26,19 +27,18 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) => {
-  const name = req.query.name;
+exports.findAll = async (req, res) => {
+  const { name, page = 1 } = req.query;
   var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-  User.findAll({ where: condition, include: ['pitches'] })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving users."
-      });
-    });
+  await User.findAndCountAll({
+    where: condition,
+    attributes: ['id', 'name', 'avatar'],
+    limit: 10,
+    offset: (page - 1) * 10,
+    order: [['name', 'ASC'], ['createdAt', 'ASC'], ['id', 'ASC']]
+  })
+    .then(data => res.send(getPaginatedData(data, page, 10)))
+    .catch(err => res.status(500).send({ msg: err.message || "Some error occurred while retrieving users." }));
 };
 
 exports.findOne = async (req, res) => {
