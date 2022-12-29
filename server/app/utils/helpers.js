@@ -8,3 +8,12 @@ exports.generateString = length => {
   }
   return result;
 }
+
+exports.getPaginatedData = (data, page, limit) => {
+  const { count: totalItems, rows: items } = data;
+  const currentPage = page ? +page : 1;
+  const totalPages = Math.ceil(totalItems / limit);
+  const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+  return { totalItems, totalPages, currentPage, nextPage, items };
+}
