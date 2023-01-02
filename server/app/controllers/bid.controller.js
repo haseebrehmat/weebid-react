@@ -8,7 +8,7 @@ exports.createBid = async (req, res) => {
     const user = await bid.getUser()
     // bid.setDataValue('user', await bid.getUser())
     return res.json({ msg: `Thanks for supporting ${user.name}. We sent a receipt to your email.`, data: bid })
-  } catch (error) {
+  } catch (err) {
     return res.status(500).send({ msg: err.message })
   }
 };
@@ -36,7 +36,7 @@ exports.updateBid = async (req, res) => {
     });
     return res.json({ msg: 'Your pledge has been updated.' })
   } catch (error) {
-    return res.status(500).send({ msg: err.message })
+    return res.status(500).send({ msg: error.message })
   }
 };
 
