@@ -49,6 +49,6 @@ require('./app/routes')(app);
 
 const port = process.env.PORT || 3001
 app.listen(port, () => {
-  fs.rmSync('logs.csv', { force: true })
+  // fs.rmSync('logs.csv', { force: true })
   console.log(`Listening on port ${port}`)
 })

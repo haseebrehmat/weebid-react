@@ -22,7 +22,7 @@ exports.findAll = async (req, res) => {
     });
     return res.send(response);
   } catch (error) {
-    return res.status(500).send({ msg: err.message || "Some error occurred while retrieving questions." });
+    return res.status(500).send({ msg: error.message || "Some error occurred while retrieving questions." });
   }
 }
 
@@ -37,7 +37,7 @@ exports.findUserQuestions = async (req, res) => {
     });
     return res.send(response);
   } catch (error) {
-    return res.status(500).send({ msg: err.message || "Some error occurred while retrieving user questions." });
+    return res.status(500).send({ msg: error.message || "Some error occurred while retrieving user questions." });
   }
 }
 
